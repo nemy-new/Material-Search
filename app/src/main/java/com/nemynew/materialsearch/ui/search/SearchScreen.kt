@@ -548,8 +548,8 @@ fun SearchScreen(
         }
     }
 
-    LaunchedEffect(query) {
-        val allApps = appRepository.searchApps(query)
+    LaunchedEffect(query, userShortcuts) {
+        val allApps = appRepository.searchApps(query, userShortcuts)
         apps = allApps.filter { 
             val key = "${it.packageName}/${it.componentName}"
             key !in hiddenApps

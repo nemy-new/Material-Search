@@ -1855,8 +1855,6 @@ object ShortcutData {
         "pict" to listOf("PictSQUARE", "ピクスク"),
         "book" to listOf("Bookmeter", "読書メーター"),
         "film" to listOf("Filmarks", "フィルマークス"),
-        "filma" to listOf("Filmarks", "映画")
-    )
         "filma" to listOf("Filmarks", "映画"),
 
         // ==========================================

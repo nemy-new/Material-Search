@@ -38,13 +38,32 @@ class AppRepository(private val context: Context) {
 
     suspend fun loadApps() {
         withContext(Dispatchers.IO) {
-            // 1. Load from cache first for instant UI response
+            // 1. Load from cache first
             val cachedData = loadCache()
-            if (cachedData.isNotEmpty()) {
-                cachedApps = cachedData.sortedBy { it.appInfo.label }
+            
+            // Prepare normalized static shortcuts ONCE
+            val normalizedStaticShortcuts = ShortcutData.staticShortcuts.mapValues { (_, targets) ->
+                targets.map { normalize(it) }
             }
 
-            // 2. Perform background sync to check for new/removed apps
+            // Function to compute shortcuts for an app
+            fun computeShortcutsForApp(normalizedLabel: String): List<String> {
+                return normalizedStaticShortcuts.filterValues { normalizedTargets ->
+                    normalizedTargets.any { target -> normalizedLabel.contains(target, ignoreCase = true) }
+                }.keys.map { normalize(it) }
+            }
+
+            var updatedList = if (cachedData.isNotEmpty()) {
+                // RE-COMPUTE shortcuts for cached apps to ensure new static shortcuts are applied
+                cachedData.map { cachedApp ->
+                    val shortcuts = computeShortcutsForApp(cachedApp.normalizedLabel)
+                    cachedApp.copy(associatedShortcuts = shortcuts)
+                }.toMutableList()
+            } else {
+                mutableListOf()
+            }
+
+            // 2. Sync with PackageManager
             val pm = context.packageManager
             val mainIntent = Intent(Intent.ACTION_MAIN, null).apply {
                 addCategory(Intent.CATEGORY_LAUNCHER)
@@ -57,26 +76,21 @@ class AppRepository(private val context: Context) {
                 if (packageName == context.packageName) null else packageName to componentName
             }
 
-            val cachedKeys = cachedApps.map { it.appInfo.packageName to it.appInfo.componentName }.toSet()
+            val cachedKeys = updatedList.map { it.appInfo.packageName to it.appInfo.componentName }.toSet()
             val currentKeys = currentApps.toSet()
 
             val addedKeys = currentKeys - cachedKeys
             val removedKeys = cachedKeys - currentKeys
 
-            if (addedKeys.isEmpty() && removedKeys.isEmpty()) {
-                return@withContext
+            // Remove uninstalled apps matches
+            if (removedKeys.isNotEmpty()) {
+                updatedList.removeAll { 
+                    (it.appInfo.packageName to it.appInfo.componentName) in removedKeys 
+                }
             }
 
-            // Update list
-            val updatedList = cachedApps.filterNot { 
-                (it.appInfo.packageName to it.appInfo.componentName) in removedKeys 
-            }.toMutableList()
-
+            // Add new apps
             if (addedKeys.isNotEmpty()) {
-                val normalizedStaticShortcuts = ShortcutData.staticShortcuts.mapValues { (_, targets) ->
-                    targets.map { normalize(it) }
-                }
-
                 val newApps = resolvedInfos.mapNotNull { resolveInfo ->
                     val packageName = resolveInfo.activityInfo.packageName
                     val componentName = resolveInfo.activityInfo.name
@@ -90,9 +104,7 @@ class AppRepository(private val context: Context) {
                                 val appInfo = AppInfo(label, packageName, componentName, intent)
                                 val normalizedLabel = normalize(label)
                                 val kanaLabel = getKanaFromRomaji(normalizedLabel)
-                                val associatedShortcuts = normalizedStaticShortcuts.filterValues { normalizedTargets ->
-                                    normalizedTargets.any { target -> normalizedLabel.contains(target, ignoreCase = true) }
-                                }.keys.map { normalize(it) }
+                                val associatedShortcuts = computeShortcutsForApp(normalizedLabel)
                                 CachedApp(appInfo, normalizedLabel, kanaLabel, associatedShortcuts)
                             } else null
                         } catch (e: Exception) { null }
@@ -268,7 +280,7 @@ class AppRepository(private val context: Context) {
         return result
     }
 
-    suspend fun searchApps(query: String): List<AppInfo> {
+    suspend fun searchApps(query: String, userShortcuts: Map<String, String> = emptyMap()): List<AppInfo> {
         if (cachedApps.isEmpty()) {
             loadApps()
         }
@@ -283,16 +295,31 @@ class AppRepository(private val context: Context) {
         
         return withContext(Dispatchers.Default) {
             cachedApps.filter { cachedApp ->
-                // 1. Standard contains check
+                // 1. User Shortcuts Check (Manual overrides)
+                // userShortcuts map is: shortcut -> "packageName|componentName"
+                if (userShortcuts.isNotEmpty()) {
+                    val target = userShortcuts[query.lowercase()] ?: userShortcuts[normalizedQuery]
+                    if (target != null) {
+                         val (pkg, cls) = target.split("|")
+                         if (cachedApp.appInfo.packageName == pkg && cachedApp.appInfo.componentName == cls) {
+                             return@filter true
+                         }
+                    }
+                    // Also check if query partially matches a user shortcut? 
+                    // Usually manual shortcuts are exact matches or simple prefixes.
+                    // For now, let's stick to exact match for the shortcut key logic in repository.
+                }
+
+                // 2. Standard contains check
                 if (cachedApp.normalizedLabel.contains(normalizedQuery, ignoreCase = true)) return@filter true
                 
-                // 2. Romaji -> Kana check (e.g. query "kamera" matches app "カメラ")
+                // 3. Romaji -> Kana check (e.g. query "kamera" matches app "カメラ")
                 if (cachedApp.normalizedLabel.contains(kanaQuery, ignoreCase = true)) return@filter true
                 
-                // 3. Kana -> Romaji check (e.g. query "げん" matches app "Genshin")
+                // 4. Kana -> Romaji check (e.g. query "げん" matches app "Genshin")
                 if (cachedApp.normalizedLabel.contains(romajiQuery, ignoreCase = true)) return@filter true
 
-                // 4. Static Shortcuts check (Pre-computed)
+                // 5. Static Shortcuts check (Pre-computed)
                 if (cachedApp.associatedShortcuts.any { it.startsWith(normalizedQuery) }) return@filter true
 
                 false
