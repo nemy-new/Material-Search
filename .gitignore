@@ -15,3 +15,6 @@ local.properties
 *.jks
 check_keystore.sh
 app/release-key.jks
+
+# Profiling
+*.hprof

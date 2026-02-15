@@ -1169,6 +1169,1053 @@ object ShortcutData {
         "whata" to listOf("WhatsApp"),
         "kik" to listOf("TikTok"),
         "teikku" to listOf("TikTok"),
-        "yu-tyu" to listOf("YouTube")
+        "yu-tyu" to listOf("YouTube"),
+
+        // ==========================================
+        // 38. Chat & Messenger (チャットアプリ特化)
+        // ==========================================
+        
+        // --- Telegram (テレグラム) ---
+        "tele" to listOf("Telegram", "テレグラム"),
+        "tg" to listOf("Telegram", "テレグラム"),
+        "telega" to listOf("Telegram", "テレグラム"),
+        "telegram" to listOf("Telegram", "テレグラム"),
+        "tereguramu" to listOf("Telegram", "テレグラム"),
+        "tere" to listOf("Telegram", "テレグラム"),
+        "てれぐらむ" to listOf("Telegram", "テレグラム"),
+        "てれ" to listOf("Telegram", "テレグラム"),
+
+        // --- WhatsApp (ワッツアップ) ---
+        "what" to listOf("WhatsApp", "ワッツアップ"),
+        "wa" to listOf("WhatsApp", "ワッツアップ"),
+        "whatapp" to listOf("WhatsApp", "ワッツアップ"),
+        "whatsup" to listOf("WhatsApp", "ワッツアップ"),
+        "watts" to listOf("WhatsApp", "ワッツアップ"),
+        "wattsu" to listOf("WhatsApp", "ワッツアップ"),
+        "ottsu" to listOf("WhatsApp", "ワッツアップ"), // "オッツ"と聞こえる場合
+        "わっつ" to listOf("WhatsApp", "ワッツアップ"),
+        "わっつあっぷ" to listOf("WhatsApp", "ワッツアップ"),
+
+        // --- Signal (シグナル) ---
+        "sig" to listOf("Signal", "シグナル"),
+        "signal" to listOf("Signal", "シグナル"),
+        "shigunaru" to listOf("Signal", "シグナル"),
+        "sigu" to listOf("Signal", "シグナル"),
+        "しぐなる" to listOf("Signal", "シグナル"),
+        "しぐ" to listOf("Signal", "シグナル"),
+
+        // --- KakaoTalk (カカオトーク) ---
+        "kakao" to listOf("KakaoTalk", "カカオトーク"),
+        "kaka" to listOf("KakaoTalk", "カカオトーク"),
+        "talk" to listOf("KakaoTalk", "Talk", "カカオ"),
+        "kt" to listOf("KakaoTalk", "カカオ"),
+        "kakaoto-ku" to listOf("KakaoTalk", "カカオトーク"),
+        "かかお" to listOf("KakaoTalk", "カカオ"),
+        "かかおとーく" to listOf("KakaoTalk", "カカオトーク"),
+        "カカオ" to listOf("KakaoTalk", "カカオ"),
+
+        // --- WeChat (ウィーチャット) ---
+        "we" to listOf("WeChat", "ウィーチャット"),
+        "wechat" to listOf("WeChat", "ウィーチャット"),
+        "wc" to listOf("WeChat", "ウィーチャット"),
+        "ui" to listOf("WeChat", "ウィーチャット"),
+        "ui-chatto" to listOf("WeChat", "ウィーチャット"),
+        "uichatto" to listOf("WeChat", "ウィーチャット"),
+        "うぃー" to listOf("WeChat", "ウィーチャット"),
+        "うぃーちゃっと" to listOf("WeChat", "ウィーチャット"),
+
+        // --- Rakuten Viber (バイバー) ---
+        "viber" to listOf("Rakuten Viber", "Viber", "バイバー"),
+        "vi" to listOf("Viber", "バイバー"),
+        "vaiba" to listOf("Viber", "バイバー"),
+        "baiba" to listOf("Viber", "バイバー"),
+        "ばいばー" to listOf("Viber", "バイバー"),
+
+        // --- Skype (スカイプ) ---
+        "sky" to listOf("Skype", "スカイプ"),
+        "skype" to listOf("Skype", "スカイプ"),
+        "sukai" to listOf("Skype", "スカイプ"),
+        "sukaipu" to listOf("Skype", "スカイプ"),
+        "すかいぷ" to listOf("Skype", "スカイプ"),
+        "すかい" to listOf("Skype", "スカイプ"),
+
+        // --- Kik (キック) ---
+        "kik" to listOf("Kik", "キック"),
+        "kikku" to listOf("Kik", "キック"),
+        "ki" to listOf("Kik", "キック"), // 短すぎるが文脈次第
+        "きっく" to listOf("Kik", "キック"),
+
+        // --- Snapchat (スナップチャット) ---
+        "snap" to listOf("Snapchat", "スナップチャット"),
+        "sc" to listOf("Snapchat", "スナチャ"),
+        "suna" to listOf("Snapchat", "スナチャ"),
+        "sunacha" to listOf("Snapchat", "スナチャ"),
+        "sunappu" to listOf("Snapchat", "スナップチャット"),
+        "すな" to listOf("Snapchat", "スナチャ"),
+        "すなちゃ" to listOf("Snapchat", "スナチャ"),
+        "すなっぷ" to listOf("Snapchat", "スナップチャット"),
+
+        // --- Session (セッション - 高匿名) ---
+        "sess" to listOf("Session", "セッション"),
+        "session" to listOf("Session", "セッション"),
+        "sesu" to listOf("Session", "セッション"),
+        "sesshon" to listOf("Session", "セッション"),
+        "せっしょん" to listOf("Session", "セッション"),
+
+        // --- Threema (スリーマ - 高セキュリティ) ---
+        "threema" to listOf("Threema", "スリーマ"),
+        "three" to listOf("Threema", "スリーマ"),
+        "suri-ma" to listOf("Threema", "スリーマ"),
+        "すりーま" to listOf("Threema", "スリーマ"),
+
+        // --- Element / Matrix (エレメント - 分散型) ---
+        "ele" to listOf("Element", "Matrix", "エレメント"),
+        "element" to listOf("Element", "エレメント"),
+        "matrix" to listOf("Element", "Matrix", "マトリックス"),
+        "eremento" to listOf("Element", "エレメント"),
+        "えれめんと" to listOf("Element", "エレメント"),
+
+        // --- Wire (ワイヤー) ---
+        "wire" to listOf("Wire", "ワイヤー"),
+        "waiya" to listOf("Wire", "ワイヤー"),
+        "わいやー" to listOf("Wire", "ワイヤー"),
+
+        // --- Wickr (ウィッカー) ---
+        "wickr" to listOf("Wickr", "Wickr Me", "ウィッカー"),
+        "uikka" to listOf("Wickr", "ウィッカー"),
+        "うぃっかー" to listOf("Wickr", "ウィッカー"),
+
+        // --- Slack (スラック - 再掲・強化) ---
+        "sl" to listOf("Slack", "スラック"),
+        "slack" to listOf("Slack", "スラック"),
+        "sura" to listOf("Slack", "スラック"),
+        "surakku" to listOf("Slack", "スラック"),
+        "すらっく" to listOf("Slack", "スラック"),
+        "すら" to listOf("Slack", "スラック"),
+
+        // --- Microsoft Teams (チームズ - 再掲・強化) ---
+        "team" to listOf("Microsoft Teams", "Teams", "チームズ"),
+        "teams" to listOf("Microsoft Teams", "Teams", "チームズ"),
+        "tm" to listOf("Microsoft Teams", "Teams"),
+        "ti-mu" to listOf("Teams", "チームズ"),
+        "ti-muzu" to listOf("Teams", "チームズ"),
+        "ちーむ" to listOf("Teams", "チームズ"),
+        "ちーむず" to listOf("Teams", "チームズ"),
+
+        // --- Discord (ディスコード - 再掲・強化) ---
+        "dc" to listOf("Discord", "ディスコード"),
+        "dis" to listOf("Discord", "ディスコード"),
+        "disco" to listOf("Discord", "ディスコード"),
+        "deisuko" to listOf("Discord", "ディスコード"),
+        "でぃすこ" to listOf("Discord", "ディスコード"),
+        "でぃす" to listOf("Discord", "ディスコード"),
+
+        // --- Chatwork (チャットワーク) ---
+        "cw" to listOf("Chatwork", "チャットワーク"),
+        "chatwork" to listOf("Chatwork", "チャットワーク"),
+        "chatto" to listOf("Chatwork", "ChatGPT", "チャット"), // 文脈による
+        "chattowa-ku" to listOf("Chatwork", "チャットワーク"),
+        "ちゃっとわーく" to listOf("Chatwork", "チャットワーク"),
+
+        // --- Mattermost (マターモースト) ---
+        "matter" to listOf("Mattermost", "マターモースト"),
+        "matamo" to listOf("Mattermost", "マタモ"),
+        "またー" to listOf("Mattermost", "マターモースト"),
+
+        // --- Rocket.Chat (ロケットチャット) ---
+        "rocket" to listOf("Rocket.Chat", "ロケットチャット"),
+        "roketto" to listOf("Rocket.Chat", "ロケチャ"),
+        "ろけっと" to listOf("Rocket.Chat", "ロケットチャット"),
+
+        // --- Zalo (ザロ - ベトナム系) ---
+        "zalo" to listOf("Zalo", "ザロ"),
+        "zaro" to listOf("Zalo", "ザロ"),
+        "ざろ" to listOf("Zalo", "ザロ"),
+
+        // --- GroupMe (グループミー) ---
+        "group" to listOf("GroupMe", "グループミー"),
+        "guru-pu" to listOf("GroupMe", "グループミー"),
+
+        // --- ICQ (アイシーキュー - レガシー) ---
+        "icq" to listOf("ICQ", "アイシーキュー"),
+        "aishi" to listOf("ICQ", "アイシーキュー"),
+
+        // --- +Message (プラスメッセージ) ---
+        "purasu" to listOf("+Message", "Plus Message", "プラスメッセージ"),
+        "pumesse" to listOf("+Message", "プラメ"),
+        "plume" to listOf("+Message", "プラメ"),
+        "ぷらす" to listOf("+Message", "プラスメッセージ"),
+        "ぷらめ" to listOf("+Message", "プラメ"),
+
+        // ==========================================
+        // 39. Shopping: Major EC (総合通販 / モール)
+        // ==========================================
+        // Amazon
+        "ama" to listOf("Amazon", "Shopping", "アマゾン", "通販"),
+        "amz" to listOf("Amazon", "アマゾン"),
+        "azon" to listOf("Amazon", "アマゾン"),
+        "amazon" to listOf("Amazon", "アマゾン"),
+        "amazon" to listOf("Amazon", "アマゾン"),
+        "あま" to listOf("Amazon", "アマゾン"),
+        "あまぞん" to listOf("Amazon", "アマゾン"),
+
+        // Rakuten
+        "raku" to listOf("Rakuten", "Rakuten Ichiba", "楽天", "楽天市場"),
+        "ichiba" to listOf("Rakuten Ichiba", "楽天市場", "市場"),
+        "r" to listOf("Rakuten", "楽天"),
+        "rakuten" to listOf("Rakuten", "楽天"),
+        "rakutenichiba" to listOf("Rakuten Ichiba", "楽天市場"),
+        "らくてん" to listOf("Rakuten", "楽天"),
+        "いちば" to listOf("Rakuten Ichiba", "楽天市場"),
+
+        // Yahoo! Shopping
+        "yahoo" to listOf("Yahoo! Shopping", "Yahoo", "ヤフー"),
+        "sho" to listOf("Yahoo! Shopping", "Shopping", "ショッピング"),
+        "yahoosho" to listOf("Yahoo! Shopping", "ヤフショ"),
+        "yafushou" to listOf("Yahoo! Shopping", "ヤフショ"),
+        "yasu" to listOf("Yahoo! Shopping", "ヤフー"), // 安い？
+        "やふー" to listOf("Yahoo! Shopping", "Yahoo", "ヤフー"),
+        "やふしょ" to listOf("Yahoo! Shopping", "ヤフショ"),
+
+        // Qoo10 (eBay Japan)
+        "qoo" to listOf("Qoo10", "キューテン", "メガ割"),
+        "qoo10" to listOf("Qoo10", "キューテン"),
+        "kyu" to listOf("Qoo10", "キューテン"),
+        "kyuten" to listOf("Qoo10", "キューテン"),
+        "mega" to listOf("Qoo10", "メガ割"),
+        "きゅーてん" to listOf("Qoo10", "キューテン"),
+        "めがわり" to listOf("Qoo10", "メガ割"),
+
+        // au PAY Market
+        "aupaym" to listOf("au PAY Market", "au PAY マーケット"),
+        "wowma" to listOf("au PAY Market", "Wowma", "ワウマ"), // 旧名
+        "ma-ketto" to listOf("au PAY Market", "マーケット"),
+
+        // ==========================================
+        // 40. Shopping: Flea Market & Auction (フリマ / オークション)
+        // ==========================================
+        // Mercari
+        "mer" to listOf("Mercari", "メルカリ"),
+        "merc" to listOf("Mercari", "メルカリ"),
+        "kari" to listOf("Mercari", "メルカリ"),
+        "merukari" to listOf("Mercari", "メルカリ"),
+        "merucari" to listOf("Mercari", "メルカリ"),
+        "めるかり" to listOf("Mercari", "メルカリ"),
+        "める" to listOf("Mercari", "メルカリ"),
+
+        // Yahoo! Auctions
+        "yafuo" to listOf("Yahoo! Auctions", "ヤフオク"),
+        "oku" to listOf("Yahoo! Auctions", "Auction", "オークション"),
+        "auc" to listOf("Yahoo! Auctions", "Auction", "オークション"),
+        "yahuoku" to listOf("Yahoo! Auctions", "ヤフオク"),
+        "やふおく" to listOf("Yahoo! Auctions", "ヤフオク"),
+        "おく" to listOf("Yahoo! Auctions", "オークション"),
+
+        // Rakuma (Rakuten Flea)
+        "rakum" to listOf("Rakuma", "ラクマ"),
+        "fril" to listOf("Rakuma", "フリル"), // 旧名
+        "rakuma" to listOf("Rakuma", "ラクマ"),
+        "furiru" to listOf("Rakuma", "フリル"),
+        "らくま" to listOf("Rakuma", "ラクマ"),
+
+        // PayPay Flea Market
+        "payf" to listOf("PayPay Flea Market", "PayPayフリマ"),
+        "peifuri" to listOf("PayPay Flea Market", "ペイフリ"),
+        "furima" to listOf("PayPay Flea Market", "Mercari", "フリマ"),
+        "ぺいふり" to listOf("PayPay Flea Market", "ペイフリ"),
+        "ふりま" to listOf("PayPay Flea Market", "フリマ"),
+
+        // SNKRDUNK (Sneakers)
+        "snkr" to listOf("SNKRDUNK", "スニダン"),
+        "dunk" to listOf("SNKRDUNK", "スニダン"),
+        "sunidan" to listOf("SNKRDUNK", "スニダン"),
+        "すにだん" to listOf("SNKRDUNK", "スニダン"),
+
+        // magi (Trading Cards)
+        "magi" to listOf("magi", "マギ", "トレカ"),
+        "toreka" to listOf("magi", "clove", "トレカ"),
+        "まぎ" to listOf("magi", "マギ"),
+
+        // Jimoty (Local)
+        "jimo" to listOf("Jimoty", "ジモティー"),
+        "jimoti" to listOf("Jimoty", "ジモティー"),
+        "jimotei" to listOf("Jimoty", "ジモティー"),
+        "じも" to listOf("Jimoty", "ジモティー"),
+        "じもてぃー" to listOf("Jimoty", "ジモティー"),
+
+        // ==========================================
+        // 41. Shopping: Fashion & Apparel (ファッション)
+        // ==========================================
+        // ZOZOTOWN
+        "zozo" to listOf("ZOZOTOWN", "ゾゾタウン", "ゾゾ"),
+        "zo" to listOf("ZOZOTOWN", "ゾゾ"),
+        "zozotown" to listOf("ZOZOTOWN", "ゾゾタウン"),
+        "ぞぞ" to listOf("ZOZOTOWN", "ゾゾ"),
+        "ぞぞたうん" to listOf("ZOZOTOWN", "ゾゾタウン"),
+
+        // UNIQLO
+        "uni" to listOf("UNIQLO", "ユニクロ"),
+        "uniqlo" to listOf("UNIQLO", "ユニクロ"),
+        "yunikuro" to listOf("UNIQLO", "ユニクロ"),
+        "ゆに" to listOf("UNIQLO", "ユニクロ"),
+        "ゆにくろ" to listOf("UNIQLO", "ユニクロ"),
+
+        // GU
+        "gu" to listOf("GU", "ジーユー"),
+        "zi-yu-" to listOf("GU", "ジーユー"),
+        "じーゆー" to listOf("GU", "ジーユー"),
+        "じゆう" to listOf("GU", "ジーユー"), // 誤変換
+
+        // SHEIN
+        "shein" to listOf("SHEIN", "シーイン"),
+        "shiin" to listOf("SHEIN", "シーイン"),
+        "she" to listOf("SHEIN", "シーイン"),
+        "しーいん" to listOf("SHEIN", "シーイン"),
+
+        // GRL
+        "grl" to listOf("GRL", "グレイル"),
+        "gureiru" to listOf("GRL", "グレイル"),
+        "ぐれいる" to listOf("GRL", "グレイル"),
+
+        // SHOPLIST
+        "shoplist" to listOf("SHOPLIST", "ショップリスト"),
+        "shoppu" to listOf("SHOPLIST", "ショップリスト"),
+        "しょっぷりすと" to listOf("SHOPLIST", "ショップリスト"),
+
+        // ZARA / H&M
+        "zara" to listOf("ZARA", "ザラ"),
+        "hm" to listOf("H&M", "エイチアンドエム"),
+        "handm" to listOf("H&M", "エイチアンドエム"),
+
+        // Sports Brands
+        "nike" to listOf("Nike", "SNKRS", "ナイキ"),
+        "snkrs" to listOf("SNKRS", "Nike", "スニーカーズ"),
+        "naiki" to listOf("Nike", "ナイキ"),
+        "adi" to listOf("Adidas", "Confirmed", "アディダス"),
+        "adidas" to listOf("Adidas", "アディダス"),
+        "adidasu" to listOf("Adidas", "アディダス"),
+
+        // Workman
+        "work" to listOf("Workman", "Workman Plus", "ワークマン"),
+        "wa-kuman" to listOf("Workman", "ワークマン"),
+        "わーくまん" to listOf("Workman", "ワークマン"),
+
+        // ==========================================
+        // 42. Shopping: Electronics & PC (家電 / パソコン)
+        // ==========================================
+        // Yodobashi Camera
+        "yodo" to listOf("Yodobashi", "ヨドバシ", "ヨドバシカメラ"),
+        "yodobashi" to listOf("Yodobashi", "ヨドバシ"),
+        "gold" to listOf("Yodobashi", "ゴールドポイント"),
+        "よど" to listOf("Yodobashi", "ヨドバシ"),
+        "よどばし" to listOf("Yodobashi", "ヨドバシ"),
+
+        // Bic Camera
+        "bic" to listOf("Bic Camera", "ビックカメラ"),
+        "bikku" to listOf("Bic Camera", "ビックカメラ"),
+        "big" to listOf("Bic Camera", "ビックカメラ"), // 誤記対応
+        "びっく" to listOf("Bic Camera", "ビックカメラ"),
+
+        // Yamada Denki
+        "yamada" to listOf("Yamada Denki", "ヤマダ電機", "ヤマダ"),
+        "yama" to listOf("Yamada Denki", "ヤマダ"),
+        "やまだ" to listOf("Yamada Denki", "ヤマダ"),
+
+        // Apple Store
+        "apple" to listOf("Apple Store", "Apple", "アップル"),
+        "store" to listOf("Apple Store", "Google Play Store", "ストア"),
+        "appu" to listOf("Apple Store", "アップル"),
+        "あっぷる" to listOf("Apple Store", "アップル"),
+
+        // PC Parts / BTO
+        "dos" to listOf("Dospara", "ドスパラ"),
+        "dosupara" to listOf("Dospara", "ドスパラ"),
+        "どすぱら" to listOf("Dospara", "ドスパラ"),
+        "tsukumo" to listOf("Tsukumo", "ツクモ"),
+        "つくも" to listOf("Tsukumo", "ツクモ"),
+        "sof" to listOf("Sofmap", "ソフマップ"),
+        "sofumappu" to listOf("Sofmap", "ソフマップ"),
+        "そふまっぷ" to listOf("Sofmap", "ソフマップ"),
+        "mouse" to listOf("Mouse Computer", "マウスコンピューター"),
+        "dell" to listOf("Dell", "デル"),
+
+        // ==========================================
+        // 43. Shopping: Overseas / Cross-border (海外通販)
+        // ==========================================
+        // AliExpress
+        "ali" to listOf("AliExpress", "アリエクスプレス", "アリエク"),
+        "aliex" to listOf("AliExpress", "アリエク"),
+        "ari" to listOf("AliExpress", "アリエク"),
+        "ariek" to listOf("AliExpress", "アリエク"),
+        "arieku" to listOf("AliExpress", "アリエク"),
+        "あり" to listOf("AliExpress", "アリエク"),
+        "ありえく" to listOf("AliExpress", "アリエク"),
+
+        // Temu
+        "temu" to listOf("Temu", "テム", "ティームー"),
+        "tem" to listOf("Temu", "テム"),
+        "temu-" to listOf("Temu", "ティームー"),
+        "てむ" to listOf("Temu", "テム"),
+
+        // iHerb
+        "iherb" to listOf("iHerb", "アイハーブ"),
+        "herb" to listOf("iHerb", "ハーブ"),
+        "aiha" to listOf("iHerb", "アイハーブ"),
+        "あいはーぶ" to listOf("iHerb", "アイハーブ"),
+
+        // Buyee / Proxy
+        "buyee" to listOf("Buyee", "Mercari", "バイイー"),
+        "bai" to listOf("Buyee", "バイイー"),
+        "proxy" to listOf("Buyee", "From Japan", "代行"),
+
+        // ==========================================
+        // 44. Shopping: Home & Daily Life (生活 / 日用品)
+        // ==========================================
+        // Nitori
+        "nitori" to listOf("Nitori", "ニトリ"),
+        "nito" to listOf("Nitori", "ニトリ"),
+        "にとり" to listOf("Nitori", "ニトリ"),
+
+        // IKEA
+        "ikea" to listOf("IKEA", "イケア"),
+        "ike" to listOf("IKEA", "イケア"),
+        "ikeya" to listOf("IKEA", "イケア"), // 読み間違い対応
+        "いけあ" to listOf("IKEA", "イケア"),
+
+        // MUJI
+        "muji" to listOf("MUJI", "無印良品", "無印"),
+        "mujirushi" to listOf("MUJI", "無印良品"),
+        "むじ" to listOf("MUJI", "無印"),
+        "むじるし" to listOf("MUJI", "無印良品"),
+
+        // 100 Yen Shops
+        "daiso" to listOf("Daiso", "ダイソー"),
+        "daiso-" to listOf("Daiso", "ダイソー"),
+        "だいそー" to listOf("Daiso", "ダイソー"),
+        "seria" to listOf("Seria", "セリア"),
+        "cando" to listOf("Can Do", "キャンドゥ"),
+        "hyakkin" to listOf("Daiso", "Seria", "100均"),
+
+        // Drug Stores
+        "matsu" to listOf("Matsukiyo", "Matsumoto Kiyoshi", "マツキヨ"),
+        "kiyo" to listOf("Matsukiyo", "マツキヨ"),
+        "ma" to listOf("Matsukiyo", "マツキヨ"),
+        "welcia" to listOf("Welcia", "ウエルシア"),
+        "ueru" to listOf("Welcia", "ウエルシア"),
+        "sugi" to listOf("Sugi Pharmacy", "スギ薬局"),
+        "cocokara" to listOf("Cocokara Fine", "ココカラファイン"),
+        "kusuri" to listOf("Matsukiyo", "Welcia", "薬局", "ドラッグストア"),
+
+        // Supermarkets / Conbini
+        "aeon" to listOf("iAEON", "AEON", "イオン"),
+        "ion" to listOf("iAEON", "AEON", "イオン"),
+        "いおん" to listOf("iAEON", "イオン"),
+        "ito" to listOf("Ito-Yokado", "イトーヨーカドー"),
+        "yokado" to listOf("Ito-Yokado", "ヨーカドー"),
+        "seiyu" to listOf("Seiyu", "Rakuten Seiyu", "西友"),
+        "donki" to listOf("Don Quijote", "majica", "ドンキ"),
+        "majica" to listOf("majica", "Don Quijote", "マジカ"),
+        "seven" to listOf("7-Eleven", "セブンイレブン", "セブン"),
+        "nanaco" to listOf("nanaco", "ナナコ"),
+        "lawson" to listOf("Lawson", "Ponta", "ローソン"),
+        "fami" to listOf("FamilyMart", "FamiPay", "ファミマ"),
+
+        // ==========================================
+        // 45. Shopping: Otaku & Hobby (オタク / グッズ)
+        // ==========================================
+        // Anime Goods
+        "animate" to listOf("Animate", "Club Animate", "アニメイト"),
+        "ani" to listOf("Animate", "アニメイト"),
+        "anime" to listOf("Animate", "アニメイト"),
+        "あにめいと" to listOf("Animate", "アニメイト"),
+
+        // Doujin / Books
+        "melon" to listOf("Melonbooks", "メロンブックス"),
+        "meron" to listOf("Melonbooks", "メロン"),
+        "めろん" to listOf("Melonbooks", "メロンブックス"),
+        "tora" to listOf("Toranoana", "とらのあな"),
+        "toranoana" to listOf("Toranoana", "とらのあな"),
+        "tora" to listOf("Toranoana", "とら"),
+        "とら" to listOf("Toranoana", "とらのあな"),
+        "lashin" to listOf("Lashinbang", "らしんばん"),
+        "rashin" to listOf("Lashinbang", "らしんばん"),
+
+        // Used Goods / Hobby
+        "suru" to listOf("Surugaya", "駿河屋"),
+        "suruga" to listOf("Surugaya", "駿河屋"),
+        "surugaya" to listOf("Surugaya", "駿河屋"),
+        "するがや" to listOf("Surugaya", "駿河屋"),
+        "manda" to listOf("Mandarake", "まんだらけ"),
+        "mandarake" to listOf("Mandarake", "まんだらけ"),
+        "ami" to listOf("AmiAmi", "あみあみ"),
+        "amiami" to listOf("AmiAmi", "あみあみ"),
+        "preban" to listOf("Premium Bandai", "プレバン"),
+        "bandai" to listOf("Premium Bandai", "バンダイ"),
+        "p-bandai" to listOf("Premium Bandai", "プレバン"),
+
+        // ==========================================
+        // 46. Shopping: Gift & Tickets (ギフト / チケット)
+        // ==========================================
+        "gift" to listOf("LINE Gift", "Amazon", "ギフト"),
+        "linegift" to listOf("LINE Gift", "LINEギフト"),
+        "gifuto" to listOf("LINE Gift", "ギフト"),
+        "tikejam" to listOf("Ticket Jam", "チケジャム"),
+        "jam" to listOf("Ticket Jam", "チケジャム"),
+        "ticket" to listOf("Ticket Pia", "e+", "チケット"),
+        "chiketto" to listOf("Ticket Pia", "チケット"),
+
+        // ==========================================
+        // 47. SNS: The Big Four (主要4大SNS / 入力揺らぎ完全対応)
+        // ==========================================
+        // Twitter / X (イーロンマスク変更対応)
+        "x" to listOf("X", "Twitter", "エックス", "ツイッター"),
+        "twit" to listOf("Twitter", "X", "ツイッター"),
+        "twi" to listOf("Twitter", "X", "ツイート"),
+        "tweet" to listOf("Twitter", "X", "ツイート"),
+        "post" to listOf("X", "Twitter", "ポスト"),
+        "blue" to listOf("Twitter", "Bluesky", "青い鳥"), // 旧アイコン意識
+        "aka" to listOf("Twitter", "Instagram", "アカウント"), // 垢（あか）
+        "ura" to listOf("Twitter", "X", "裏垢"), // 裏垢
+        "main" to listOf("Twitter", "Instagram", "本垢"), // 本垢
+        "sub" to listOf("Twitter", "Instagram", "サブ垢"), // サブ垢
+        "tsuitta" to listOf("Twitter", "ツイッター"),
+        "tuitta" to listOf("Twitter", "ツイッター"), // タイポ
+        "tuitter" to listOf("Twitter", "ツイッター"), // タイポ
+
+        // Instagram
+        "insta" to listOf("Instagram", "インスタグラム", "インスタ"),
+        "ig" to listOf("Instagram", "インスタ"),
+        "gram" to listOf("Instagram", "インスタ"),
+        "story" to listOf("Instagram", "Stories", "ストーリー"),
+        "reel" to listOf("Instagram", "Reels", "リール"),
+        "insuta" to listOf("Instagram", "インスタ"),
+        "intsa" to listOf("Instagram", "インスタ"), // よくあるタイポ
+        "baye" to listOf("Instagram", "映え"), // インスタ映え
+
+        // Facebook
+        "fb" to listOf("Facebook", "フェイスブック"),
+        "face" to listOf("Facebook", "フェイスブック"),
+        "fbook" to listOf("Facebook", "フェイスブック"),
+        "meta" to listOf("Facebook", "Meta", "メタ"),
+
+        // TikTok
+        "tik" to listOf("TikTok", "ティックトック"),
+        "tok" to listOf("TikTok", "ティックトック"),
+        "tt" to listOf("TikTok", "ティックトック"),
+        "douyin" to listOf("TikTok", "抖音"), // 中国版名称
+        "teikku" to listOf("TikTok", "ティックトック"),
+        "tikutokku" to listOf("TikTok", "ティックトック"),
+
+        // ==========================================
+        // 48. SNS: Decentralized & Next Gen (分散型 / 新興)
+        // ==========================================
+        // Threads
+        "th" to listOf("Threads", "Instagram", "スレッズ"),
+        "thread" to listOf("Threads", "スレッズ"),
+        "sure" to listOf("Threads", "スレッズ"), // スレ
+        "surezzu" to listOf("Threads", "スレッズ"),
+
+        // Bluesky
+        "bsky" to listOf("Bluesky", "ブルースカイ"),
+        "sky" to listOf("Bluesky", "Sky", "空"),
+        "ao" to listOf("Bluesky", "青空"),
+        "buru" to listOf("Bluesky", "ブルースカイ"),
+
+        // Misskey / Mastodon (Fediverse)
+        "miss" to listOf("Misskey", "Misskey.io", "ミスキー"),
+        "mk" to listOf("Misskey", "ミスキー"),
+        "io" to listOf("Misskey.io", "io", "イオ"),
+        "misuki" to listOf("Misskey", "ミスキー"),
+        "mstdn" to listOf("Mastodon", "マストドン"),
+        "don" to listOf("Mastodon", "丼", "ドン"),
+        "fedibird" to listOf("Fedibird", "フェディバード"),
+
+        // ==========================================
+        // 49. SNS: Real & Casual (リアル / 日常共有)
+        // ==========================================
+        // BeReal
+        "be" to listOf("BeReal", "ビーリアル"),
+        "real" to listOf("BeReal", "リアル"),
+        "br" to listOf("BeReal", "ビーリアル"),
+        "biri" to listOf("BeReal", "ビリ"), // 略称
+        "bi-ria" to listOf("BeReal", "ビーリアル"),
+        "biria" to listOf("BeReal", "ビーリアル"),
+
+        // Location Sharing (Zenly alternatives)
+        "nau" to listOf("whoo", "NauNau", "Snapchat", "位置情報"), // ナウ
+        "whoo" to listOf("whoo", "フー"),
+        "ichi" to listOf("Google Maps", "Snapchat", "位置情報"),
+
+        // SNOW / Camera Apps
+        "snow" to listOf("SNOW", "スノー"),
+        "soda" to listOf("SODA", "ソーダ"),
+        "ulike" to listOf("Ulike", "ユーライク"),
+        "mori" to listOf("SNOW", "Ulike", "盛れる"),
+
+        // ==========================================
+        // 50. SNS: Live Streaming (ライブ配信 / Vライバー)
+        // ==========================================
+        "twitch" to listOf("Twitch", "ツイッチ"),
+        "twi" to listOf("Twitch", "ツイッチ"), // Twitterと被るが候補には出す
+        "cas" to listOf("TwitCasting", "ツイキャス"),
+        "moi" to listOf("TwitCasting", "モイ"), // ツイキャスの挨拶
+        "twitcas" to listOf("TwitCasting", "ツイキャス"),
+        "17" to listOf("17LIVE", "イチナナ"),
+        "ichi" to listOf("17LIVE", "イチナナ"),
+        "poco" to listOf("Pococha", "ポコチャ"),
+        "showroom" to listOf("SHOWROOM", "ショールーム"),
+        "sr" to listOf("SHOWROOM", "ショールーム"),
+        "spoon" to listOf("Spoon", "スプーン"),
+        "reality" to listOf("REALITY", "リアリティ"),
+        "iriam" to listOf("IRIAM", "イリアム"),
+        "whowatch" to listOf("Whowatch", "ふわっち"),
+        "fuwa" to listOf("Whowatch", "ふわっち"),
+        "mirrativ" to listOf("Mirrativ", "ミラティブ"),
+        "mira" to listOf("Mirrativ", "ミラティブ"),
+
+        // ==========================================
+        // 51. SNS: Community & Text (コミュニティ / 掲示板)
+        // ==========================================
+        // Discord
+        "dc" to listOf("Discord", "ディスコード"),
+        "disco" to listOf("Discord", "ディスコード"),
+        "mushi" to listOf("Discord", "LINE", "通話"), // 通話の隠語（無視→虫→通話虫）
+        "tsuwa" to listOf("Discord", "LINE", "通話"),
+
+        // Reddit
+        "red" to listOf("Reddit", "レディット"),
+        "reddit" to listOf("Reddit", "レディット"),
+        "kaigai" to listOf("Reddit", "海外の反応"),
+
+        // 5ch / Matome
+        "5ch" to listOf("ChMate", "5chan", "5ちゃんねる"),
+        "2ch" to listOf("ChMate", "2chan", "2ちゃんねる"),
+        "mate" to listOf("ChMate", "JaneStyle", "メイト"),
+        "chmate" to listOf("ChMate", "5ちゃんねる"),
+        "keijiban" to listOf("ChMate", "掲示板"),
+
+        // Note / Blog
+        "note" to listOf("note", "Keep Notes", "ノート"), // Google Keepと競合するがnoteも重要
+        "noto" to listOf("note", "ノート"),
+        "ameblo" to listOf("Ameba Blog", "アメブロ"),
+        "hatena" to listOf("Hatena Bookmark", "はてなブックマーク"),
+        "hatebu" to listOf("Hatena Bookmark", "はてブ"),
+        "qiita" to listOf("Qiita", "キータ"), // 技術系SNS
+        "zenn" to listOf("Zenn", "ゼン"),
+
+        // ==========================================
+        // 52. SNS: Question & Anonymous (質問箱 / 匿名)
+        // ==========================================
+        "peing" to listOf("Peing", "Question Box", "質問箱"),
+        "shitsumon" to listOf("Peing", "Marshmallow", "質問"),
+        "mash" to listOf("Marshmallow", "マシュマロ"),
+        "maro" to listOf("Marshmallow", "マロ"),
+        "yay" to listOf("Yay!", "イェイ", "ひま部"),
+        "hima" to listOf("Yay!", "Gravity", "暇つぶし"),
+        "gravity" to listOf("Gravity", "グラビティ"),
+        "gura" to listOf("Gravity", "グラ"),
+
+        // ==========================================
+        // 53. SNS: Business & Professional (ビジネス)
+        // ==========================================
+        "linked" to listOf("LinkedIn", "リンクトイン"),
+        "in" to listOf("LinkedIn", "イン"),
+        "wanted" to listOf("Wantedly", "ウォンテッドリー"),
+        "visit" to listOf("Wantedly Visit", "ウォンテッドリー"),
+        "eight" to listOf("Eight", "名刺管理"),
+        "youten" to listOf("YOUTRUST", "ユートラスト"),
+        "trust" to listOf("YOUTRUST", "トラスト"),
+
+        // ==========================================
+        // 54. SNS: Matching & Dating (マッチング / 出会い)
+        // ==========================================
+        "tinder" to listOf("Tinder", "ティンダー"),
+        "tin" to listOf("Tinder", "ティンダー"),
+        "pairs" to listOf("Pairs", "ペアーズ"),
+        "pea" to listOf("Pairs", "ペアーズ"),
+        "taple" to listOf("Tapple", "タップル"),
+        "tap" to listOf("Tapple", "タップル"),
+        "with" to listOf("with", "ウィズ"),
+        "omiai" to listOf("Omiai", "オミアイ"),
+        "bumble" to listOf("Bumble", "バンブル"),
+        "grindr" to listOf("Grindr", "グラインダー"), // LGBTQ+
+        "nai" to listOf("Tinder", "Pairs", "ナイモノ"), // 9monstersなど
+        "koikatsu" to listOf("Pairs", "Tinder", "恋活"),
+        "deai" to listOf("Tinder", "Pairs", "出会い"),
+
+        // ==========================================
+        // 55. SNS: Hobby & Audio (趣味 / 音声)
+        // ==========================================
+        "club" to listOf("Clubhouse", "クラブハウス"), // まだ検索する人はいる
+        "stand" to listOf("stand.fm", "スタエフ"),
+        "fm" to listOf("stand.fm", "ラジオ"),
+        "voicy" to listOf("Voicy", "ボイシー"),
+        "pixiv" to listOf("pixiv", "ピクシブ"),
+        "sike" to listOf("pixiv", "スケベ"), // 隠語対応
+        "pict" to listOf("PictSQUARE", "ピクスク"),
+        "book" to listOf("Bookmeter", "読書メーター"),
+        "film" to listOf("Filmarks", "フィルマークス"),
+        "filma" to listOf("Filmarks", "映画")
+    )
+        "filma" to listOf("Filmarks", "映画"),
+
+        // ==========================================
+        // 56. Finance: Banks (主要銀行 / ネット銀行)
+        // ==========================================
+        // Mega Banks
+        "ufj" to listOf("Mitsubishi UFJ", "三菱UFJ銀行", "三菱"),
+        "mufg" to listOf("Mitsubishi UFJ", "三菱UFJ銀行"),
+        "mitsubishi" to listOf("Mitsubishi UFJ", "三菱UFJ銀行"),
+        "smbc" to listOf("SMBC", "Sumitomo Mitsui", "三井住友銀行", "三井"),
+        "mitsui" to listOf("SMBC", "三井住友銀行"),
+        "mizuho" to listOf("Mizuho", "Mizuho Direct", "みずほ銀行", "みずほ"),
+        "mizu" to listOf("Mizuho", "みずほ銀行"),
+        "risona" to listOf("Resona", "りそな銀行", "りそな"),
+        "reso" to listOf("Resona", "りそな"),
+        "yu" to listOf("Japan Post Bank", "Yucho", "ゆうちょ銀行", "ゆうちょ"),
+        "yucho" to listOf("Japan Post Bank", "ゆうちょ銀行"),
+        "yuutyo" to listOf("Japan Post Bank", "ゆうちょ銀行"),
+
+        // Net Banks
+        "sbi" to listOf("SBI Sumishin Net Bank", "SBI", "住信SBIネット銀行"),
+        "sumishin" to listOf("SBI Sumishin Net Bank", "住信SBI"),
+        "rakutenbank" to listOf("Rakuten Bank", "楽天銀行"),
+        "rbank" to listOf("Rakuten Bank", "楽天銀行"),
+        "paypaybank" to listOf("PayPay Bank", "PayPay銀行"),
+        "japannet" to listOf("PayPay Bank", "ジャパンネット銀行"), // 旧名
+        "sony" to listOf("Sony Bank", "ソニー銀行"),
+        "sevenbank" to listOf("Seven Bank", "セブン銀行"),
+        "aeonbank" to listOf("AEON Bank", "イオン銀行"),
+        "jibun" to listOf("au Jibun Bank", "auじぶん銀行"),
+
+        // ==========================================
+        // 57. Finance: Securities & Tax (証券 / 税金)
+        // ==========================================
+        "sbisec" to listOf("SBI Securities", "SBI証券"),
+        "kabu" to listOf("SBI Securities", "Rakuten Securities", "株", "株価"),
+        "stock" to listOf("Stock", "株"),
+        "rakutensec" to listOf("Rakuten Securities", "楽天証券", "iSPEED"),
+        "ispeed" to listOf("Rakuten Securities", "iSPEED"),
+        "monex" to listOf("Monex", "マネックス証券"),
+        "nomura" to listOf("Nomura", "野村證券"),
+        "daiwa" to listOf("Daiwa", "大和証券"),
+        "etax" to listOf("e-Tax", "確定申告", "国税庁"),
+        "tax" to listOf("e-Tax", "Myna Portal", "税金"),
+        "myna" to listOf("Myna Portal", "マイナポータル", "マイナンバー"),
+        "koukin" to listOf("PayPay", "公金受取"),
+
+        // ==========================================
+        // 58. Manga & E-Books: Detailed (マンガアプリ特化)
+        // ==========================================
+        // Shueisha
+        "jump" to listOf("Shonen Jump+", "Jump+", "ジャンプ+", "ジャンプ"),
+        "janpu" to listOf("Shonen Jump+", "ジャンプ"),
+        "plus" to listOf("Shonen Jump+", "NHK Plus", "プラス"), // 文脈依存
+        "zebrack" to listOf("Zebrack", "ゼブラック"),
+        "zebra" to listOf("Zebrack", "ゼブラック"),
+        "yanjan" to listOf("Young Jump", "ヤンジャン"),
+
+        // Kodansha
+        "maga" to listOf("Magazine Pocket", "マガポケ", "マガジン"),
+        "magapoke" to listOf("Magazine Pocket", "マガポケ"),
+        "poke" to listOf("Magazine Pocket", "Pokemon", "ポケ"), // ポケモンと被るが候補へ
+        "days" to listOf("Comic DAYS", "コミックDAYS"),
+
+        // Shogakukan
+        "sunday" to listOf("Sunday Webry", "サンデーうぇぶり", "サンデー"),
+        "webry" to listOf("Sunday Webry", "うぇぶり"),
+        "mangaone" to listOf("MangaONE", "マンガワン"),
+        "one" to listOf("MangaONE", "Google One", "ワン"),
+
+        // Others
+        "piccoma" to listOf("Piccoma", "ピッコマ"),
+        "pikko" to listOf("Piccoma", "ピッコマ"),
+        "line" to listOf("LINE Manga", "LINEマンガ"),
+        "mecha" to listOf("Mecha Comic", "めちゃコミック"),
+        "cmoa" to listOf("Comic Cmoa", "コミックシーモア"),
+        "ebook" to listOf("eBookJapan", "イーブック"),
+        "renta" to listOf("Renta!", "レンタ"),
+        "sukima" to listOf("Sukima", "スキマ"),
+        "pixivcomic" to listOf("pixiv Comic", "pixivコミック"),
+        "picomi" to listOf("pixiv Comic", "ピクコミ"),
+        "ganma" to listOf("GANMA!", "ガンマ"),
+        "comico" to listOf("comico", "コミコ"),
+
+        // ==========================================
+        // 59. Food Chains: Gourmet (飲食チェーン / カフェ)
+        // ==========================================
+        // Gyudon (Beef Bowl)
+        "suki" to listOf("Sukiya", "すき家"),
+        "sukiya" to listOf("Sukiya", "すき家"),
+        "yoshi" to listOf("Yoshinoya", "吉野家"),
+        "yoshinoya" to listOf("Yoshinoya", "吉野家"),
+        "gyu" to listOf("Yoshinoya", "Matsuya", "Sukiya", "牛丼"),
+        "matsu" to listOf("Matsuya", "Matsukiyo", "松屋"), // マツキヨと被る
+        "matsuya" to listOf("Matsuya", "松屋"),
+        "nakau" to listOf("Nakau", "なか卯"),
+
+        // Sushi
+        "sushiro" to listOf("Sushiro", "スシロー"),
+        "kura" to listOf("Kura Sushi", "くら寿司"),
+        "hama" to listOf("Hama Sushi", "はま寿司"),
+        "kappa" to listOf("Kappa Sushi", "かっぱ寿司"),
+        "sushi" to listOf("Sushiro", "Kura Sushi", "Hama Sushi", "寿司"),
+
+        // Cafe
+        "star" to listOf("Starbucks", "スタバ", "スターバックス"),
+        "stb" to listOf("Starbucks", "スタバ"),
+        "doutor" to listOf("Doutor", "ドトール"),
+        "komeda" to listOf("Komeda", "コメダ珈琲店", "コメダ"),
+        "tully" to listOf("Tully's", "タリーズ"),
+        "cafe" to listOf("Starbucks", "Maps", "カフェ", "喫茶店"),
+
+        // Family Restaurant / Fast Food
+        "saize" to listOf("Saizeriya", "サイゼリヤ", "サイゼ"),
+        "gusto" to listOf("Gusto", "ガスト"),
+        "bamiyan" to listOf("Bamiyan", "バーミヤン"),
+        "coco" to listOf("CoCo Ichibanya", "CoCo壱番屋", "ココイチ"),
+        "curry" to listOf("CoCo Ichibanya", "カレー"),
+        "mos" to listOf("Mos Burger", "モスバーガー", "モス"),
+        "kfc" to listOf("KFC", "Kentucky", "ケンタッキー"),
+        "kenta" to listOf("KFC", "ケンタ"),
+        "chicken" to listOf("KFC", "チキン"),
+
+        // Pizza
+        "domino" to listOf("Domino's Pizza", "ドミノピザ"),
+        "pizza" to listOf("Domino's Pizza", "Pizza Hut", "ピザ"),
+        "hut" to listOf("Pizza Hut", "ピザハット"),
+
+        // ==========================================
+        // 60. Travel: Airlines & Booking (旅行 / 航空券)
+        // ==========================================
+        // Airlines (Domestic)
+        "ana" to listOf("ANA", "All Nippon Airways", "全日空", "エーエヌエー"),
+        "jal" to listOf("JAL", "Japan Airlines", "日本航空", "ジャル"),
+        "peach" to listOf("Peach", "ピーチ", "桃"),
+        "jet" to listOf("Jetstar", "ジェットスター"),
+        "star" to listOf("Jetstar", "Starbucks", "スター"),
+        "sky" to listOf("Skymark", "スカイマーク"),
+        "lcc" to listOf("Peach", "Jetstar", "LCC", "格安航空"),
+
+        // Booking Sites (OTA)
+        "jalan" to listOf("Jalan", "じゃらん"),
+        "jaran" to listOf("Jalan", "じゃらん"),
+        "rakutentravel" to listOf("Rakuten Travel", "楽天トラベル"),
+        "travel" to listOf("Rakuten Travel", "Jalan", "Tripadvisor", "旅行"),
+        "trip" to listOf("Trip.com", "Tripadvisor", "トリップドットコム"),
+        "agoda" to listOf("Agoda", "アゴダ"),
+        "booking" to listOf("Booking.com", "ブッキングドットコム"),
+        "expedia" to listOf("Expedia", "エクスペディア"),
+        "airbnb" to listOf("Airbnb", "エアビー"),
+        "minpaku" to listOf("Airbnb", "民泊"),
+
+        // ==========================================
+        // 61. Education & Dictionaries (学習 / 辞書)
+        // ==========================================
+        // Translation
+        "deep" to listOf("DeepL", "ディープエル"),
+        "deepl" to listOf("DeepL", "ディープエル"),
+        "googletrans" to listOf("Google Translate", "翻訳"),
+        "honyaku" to listOf("Google Translate", "DeepL", "翻訳"),
+        
+        // Dictionaries
+        "weblio" to listOf("Weblio", "辞書"),
+        "koto" to listOf("Kotobank", "コトバンク"),
+        "jisho" to listOf("Weblio", "Kotobank", "辞書"),
+        "eiwa" to listOf("Dictionary", "英和"),
+        "waei" to listOf("Dictionary", "和英"),
+
+        // Learning
+        "duo" to listOf("Duolingo", "デュオリンゴ"),
+        "study" to listOf("Studyplus", "スタディプラス", "勉強"),
+        "mikan" to listOf("Mikan", "英単語"),
+        "abceed" to listOf("abceed", "エービーシード", "TOEIC"),
+        "toeic" to listOf("abceed", "Santa", "TOEIC"),
+        "els" to listOf("Elsa Speak", "エルサ"),
+
+        // ==========================================
+        // 62. Health & Beauty (健康 / 美容)
+        // ==========================================
+        // Reservation
+        "hot" to listOf("Hot Pepper Beauty", "Hot Pepper", "ホットペッパー"),
+        "beauty" to listOf("Hot Pepper Beauty", "ビューティー"),
+        "salon" to listOf("Hot Pepper Beauty", "サロン", "美容院"),
+        "biyou" to listOf("Hot Pepper Beauty", "美容院"),
+
+        // Diet / Fitness
+        "asken" to listOf("Asken", "あすけん"),
+        "asu" to listOf("Asken", "あすけん"),
+        "diet" to listOf("Asken", "MyFitnessPal", "ダイエット"),
+        "fit" to listOf("Google Fit", "Fitbit", "フィットネス"),
+        "coke" to listOf("Coke ON", "コークオン"),
+        "walk" to listOf("Coke ON", "Dragon Quest Walk", "歩数計"),
+        "sanpo" to listOf("Pikmin Bloom", "Dragon Quest Walk", "散歩"),
+        "pikmin" to listOf("Pikmin Bloom", "ピクミン"),
+
+        // ==========================================
+        // 63. System: Advanced Tools (上級者向け)
+        // ==========================================
+        // File Managers
+        "file" to listOf("Files by Google", "Solid Explorer", "ファイル"),
+        "solid" to listOf("Solid Explorer", "ソリッド"),
+        "cx" to listOf("Cx File Explorer", "Cx"),
+        "xplore" to listOf("X-plore", "エクスプローラー"),
+        "manager" to listOf("Files", "マネージャー"),
+
+        // Launchers
+        "nova" to listOf("Nova Launcher", "ノヴァ"),
+        "launcher" to listOf("Nova Launcher", "Microsoft Launcher", "ランチャー"),
+        "niagara" to listOf("Niagara Launcher", "ナイアガラ"),
+
+        // Automation
+        "tasker" to listOf("Tasker", "タスカー"),
+        "macro" to listOf("MacroDroid", "マクロドロイド"),
+        "auto" to listOf("Tasker", "MacroDroid", "自動化"),
+        "ifttt" to listOf("IFTTT", "イフト"),
+
+        // Network / Utils
+        "speed" to listOf("Speedtest", "スピードテスト"),
+        "fing" to listOf("Fing", "ネットワーク"),
+        "wifi" to listOf("Wi-Fi", "Settings", "ワイファイ"),
+        "adb" to listOf("Bugjaeger", "ADB", "デバッグ"),
+        "dev" to listOf("Developer Options", "開発者向けオプション"),
+
+        // ==========================================
+        // 64. Entertainment: Streaming (VOD / 動画)
+        // ==========================================
+        // Major VOD
+        "net" to listOf("Netflix", "Disney+", "ネットフリックス"),
+        "netflix" to listOf("Netflix", "ネットフリックス"),
+        "netofuri" to listOf("Netflix", "ネトフリ"),
+        "ne" to listOf("Netflix", "ネトフリ"),
+        "prime" to listOf("Prime Video", "Amazon", "プライムビデオ"),
+        "video" to listOf("Prime Video", "YouTube", "ビデオ"),
+        "amapura" to listOf("Prime Video", "アマプラ"),
+        "hulu" to listOf("Hulu", "Disney+", "フールー"),
+        "disney" to listOf("Disney+", "ディズニー"),
+        "dizuni" to listOf("Disney+", "ディズニー"),
+        "unext" to listOf("U-NEXT", "ユーネクスト"),
+        "yu-ne" to listOf("U-NEXT", "ユーネクスト"),
+        "dazn" to listOf("DAZN", "ダゾーン"),
+        "dazon" to listOf("DAZN", "ダゾーン"),
+
+        // TV / Anime / Niconico
+        "tver" to listOf("TVer", "ティーバー"),
+        "abema" to listOf("Abema", "アベマ"),
+        "nico" to listOf("niconico", "ニコニコ"),
+        "niko" to listOf("niconico", "ニコニコ"),
+        "douga" to listOf("niconico", "YouTube", "動画"),
+        "nhk" to listOf("NHK Plus", "NHK News", "NHK"),
+
+        // ==========================================
+        // 65. Entertainment: Music & Radio (音楽 / ラジオ)
+        // ==========================================
+        "spoti" to listOf("Spotify", "スポティファイ"),
+        "supo" to listOf("Spotify", "スポティファイ"),
+        "music" to listOf("Spotify", "Apple Music", "YouTube Music", "音楽"),
+        "ongaku" to listOf("Spotify", "Music", "音楽"),
+        "apple" to listOf("Apple Music", "Apple", "アップル"),
+        "ringo" to listOf("Apple Music", "Apple", "林檎"), // 隠語
+        "ytm" to listOf("YouTube Music", "ワイティーエム"),
+        "awa" to listOf("AWA", "アワ"),
+        "radiko" to listOf("radiko", "ラジコ"),
+        "radio" to listOf("radiko", "ラジオ"),
+        "shazam" to listOf("Shazam", "シャザム"),
+        "uta" to listOf("Spotify", "Music", "歌"),
+
+        // ==========================================
+        // 66. Productivity: Office & Work (仕事 / 効率化)
+        // ==========================================
+        // Google Workspace
+        "doc" to listOf("Google Docs", "Documents", "ドキュメント"),
+        "sheet" to listOf("Google Sheets", "Excel", "スプレッドシート"),
+        "slide" to listOf("Google Slides", "PowerPoint", "スライド"),
+        "drive" to listOf("Google Drive", "ドライブ"),
+        "keep" to listOf("Google Keep", "Keep Notes", "キープ"),
+        "cal" to listOf("Google Calendar", "Calendar", "カレンダー"),
+        "yotei" to listOf("Google Calendar", "予定"),
+
+        // Microsoft Office
+        "word" to listOf("Word", "Microsoft 365", "ワード"),
+        "excel" to listOf("Excel", "Microsoft 365", "エクセル"),
+        "power" to listOf("PowerPoint", "パワーポイント"),
+        "ppt" to listOf("PowerPoint", "パワポ"),
+        "office" to listOf("Microsoft 365", "Office", "オフィス"),
+
+        // Tools
+        "notion" to listOf("Notion", "ノーション"),
+        "zoom" to listOf("Zoom", "ズーム"),
+        "calc" to listOf("Calculator", "電卓", "計算"),
+        "keisan" to listOf("Calculator", "計算"),
+        "memo" to listOf("Keep Notes", "Notes", "メモ"),
+
+        // ==========================================
+        // 67. News, Weather & Disaster (ニュース / 天気 / 防災)
+        // ==========================================
+        // News
+        "news" to listOf("Yahoo! News", "SmartNews", "Gunosy", "ニュース"),
+        "nyu-su" to listOf("Yahoo! News", "SmartNews", "ニュース"),
+        "smart" to listOf("SmartNews", "スマートニュース"),
+        "suma" to listOf("SmartNews", "スマニュー"),
+        "gunosy" to listOf("Gunosy", "グノシー"),
+
+        // Weather
+        "weather" to listOf("Weather", "Yahoo! Weather", "天気"),
+        "tenki" to listOf("Yahoo! Weather", "Weathernews", "天気"),
+        "ame" to listOf("Yahoo! Weather", "Amemiru", "雨雲"),
+        "wn" to listOf("Weathernews", "ウェザーニュース"),
+        "weza" to listOf("Weathernews", "ウェザー"),
+
+        // Disaster Prevention
+        "nerv" to listOf("NERV", "ネルフ", "防災"),
+        "bousai" to listOf("Yahoo! Disaster Info", "NERV", "防災"),
+        "jishin" to listOf("NERV", "Yahoo! Disaster Info", "地震"),
+
+        // ==========================================
+        // 68. Food & Delivery (飲食 / デリバリー)
+        // ==========================================
+        "uber" to listOf("Uber Eats", "Uber", "ウーバー"),
+        "eats" to listOf("Uber Eats", "イーツ"),
+        "demae" to listOf("Demae-can", "出前館"),
+        "mac" to listOf("McDonald's", "マクドナルド"),
+        "makku" to listOf("McDonald's", "マック"),
+        "makudo" to listOf("McDonald's", "マクド"),
+        "burger" to listOf("McDonald's", "Mos Burger", "バーガー"),
+
+        // ==========================================
+        // 69. Map & Navigation (地図 / 移動 / 交通)
+        // ==========================================
+        // Maps
+        "map" to listOf("Google Maps", "Yahoo! Map", "地図", "マップ"),
+        "chizu" to listOf("Google Maps", "地図"),
+        "go" to listOf("Google Maps", "Pokemon GO", "ゴー"),
+
+        // Navigation / Transit
+        "navi" to listOf("Google Maps", "Navitime", "Yahoo! CarNavi", "ナビ"),
+        "norikae" to listOf("Yahoo! Transit", "Jorudan", "乗換案内"),
+        "transit" to listOf("Yahoo! Transit", "Google Maps", "乗換"),
+        "eki" to listOf("Yahoo! Transit", "Suica", "駅"),
+
+        // IC Cards / Taxi
+        "suica" to listOf("Suica", "Mobile Suica", "スイカ"),
+        "pasmo" to listOf("PASMO", "Mobile PASMO", "パスモ"),
+        "ic" to listOf("Suica", "PASMO", "ICOCA"),
+        "taxi" to listOf("GO", "Uber", "タクシー"),
+        "go" to listOf("GO", "Pokemon GO", "ゴー"), // GOタクシーも対応
+        
+        // ==========================================
+        // 70. Games: Major Titles (人気ゲーム)
+        // ==========================================
+        "poke" to listOf("Pokemon GO", "Pokemon Sleep", "ポケモン"),
+        "mon" to listOf("Monster Hunter Now", "Pokemon GO", "モンハン"),
+        "mh" to listOf("Monster Hunter Now", "モンハン"),
+        "genshin" to listOf("Genshin Impact", "原神"),
+        "hara" to listOf("Genshin Impact", "原神"),
+        "uma" to listOf("Uma Musume", "ウマ娘"),
+        "fate" to listOf("FGO", "Fate/Grand Order"),
+        "fgo" to listOf("FGO", "Fate/Grand Order"),
+        "pazudora" to listOf("Puzzle & Dragons", "パズドラ"),
+        "puzz" to listOf("Puzzle & Dragons", "パズドラ"),
+        "game" to listOf("Google Play Games", "Game Launcher", "ゲーム")
     )
 }

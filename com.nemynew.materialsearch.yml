@@ -2,8 +2,8 @@ Categories:
   - System
   - Launcher
 License: Apache-2.0
-SourceCode: https://github.com/YOUR_USER/Material_Search
-IssueTracker: https://github.com/YOUR_USER/Material_Search/issues
+SourceCode: https://github.com/nemy-new/Material-Search
+IssueTracker: https://github.com/nemy-new/Material-Search/issues
 
 AutoName: Material Search
 Summary: A fast, privacy-focused material design search launcher
@@ -18,7 +18,7 @@ Description: |
     * Shortcuts: Customize shortcuts for your favorite apps.
 
 RepoType: git
-Repo: https://github.com/YOUR_USER/Material_Search
+Repo: https://github.com/nemy-new/Material-Search
 
 Builds:
   - versionName: 1.0
