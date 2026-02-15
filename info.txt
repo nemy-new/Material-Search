@@ -1,0 +1,24 @@
+Initialized native services in: /Users/kenta/.gradle/native
+Initialized jansi services in: /Users/kenta/.gradle/native
+Received JVM installation metadata from '/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home': {JAVA_HOME=/Library/Java/JavaVirtualMachines/temurin-25.jdk/Contents/Home, JAVA_VERSION=25.0.2, JAVA_VENDOR=Eclipse Adoptium, RUNTIME_NAME=OpenJDK Runtime Environment, RUNTIME_VERSION=25.0.2+10-LTS, VM_NAME=OpenJDK 64-Bit Server VM, VM_VERSION=25.0.2+10-LTS, VM_VENDOR=Eclipse Adoptium, OS_ARCH=aarch64}
+The client will now receive all logging from the daemon (pid: 2279). The daemon log file: /Users/kenta/.gradle/daemon/8.4/daemon-2279.out.log
+Starting 4th build in daemon [uptime: 1 mins 17.834 secs, performance: 98%, GC rate: 0.00/s, heap usage: 4% of 512 MiB, non-heap usage: 12% of 384 MiB]
+Using 14 worker leases.
+Now considering [/Users/kenta/Antigravity devs/Material_Search] as hierarchies to watch
+Watching the file system is configured to be enabled if available
+File system watching is active
+Starting Build
+
+FAILURE: Build failed with an exception.
+
+* What went wrong:
+25.0.2
+
+* Try:
+> Run with --stacktrace option to get the stack trace.
+> Run with --debug option to get more log output.
+> Run with --scan to get full insights.
+> Get more help at https://help.gradle.org.
+
+BUILD FAILED in 1s
+Watched directory hierarchies: []

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Search</string>
+    <string name="search_hint">アプリを検索...</string>
+    
+    <!-- App UI -->
+    <string name="recent_section">履歴</string>
+    <string name="contacts_section">連絡先</string>
+    <string name="calculator_result">結果</string>
+    <string name="search_on_web">%1$s で検索</string>
+    <string name="speak_now">お話しください...</string>
+    
+    <!-- Settings -->
+    <string name="settings_title">設定</string>
+    <string name="appearance_section">外観</string>
+    <string name="search_bar_position">検索バーの位置</string>
+    <string name="position_top">上</string>
+    <string name="position_bottom">下</string>
+    <string name="grid_layout_section">グリッドレイアウト</string>
+    <string name="grid_columns">列数: %1$d</string>
+    <string name="behavior_section">動作</string>
+    <string name="auto_show_keyboard">キーボードを自動表示</string>
+    <string name="customization_section">カスタマイズ</string>
+    <string name="background_section">背景</string>
+
+    <!-- Setup Screen -->
+    <string name="setup_welcome_title">Material Search</string>
+    <string name="setup_welcome_subtitle">高速。ミニマル。集中。</string>
+    <string name="setup_permissions_title">世界とつながる</string>
+    <string name="setup_permissions_contact">連絡先へのアクセス</string>
+    <string name="setup_permissions_desc">ランチャーから直接検索や通話を行うために、連絡先へのアクセス権限が必要です。</string>
+    <string name="setup_tutorial_search_title">ただ、打つだけ</string>
+    <string name="setup_tutorial_search_desc">文字を入力するだけで、あらゆるアプリを瞬時に検索。ドロワーも、散らかった画面もありません。</string>
+    <string name="setup_tutorial_shortcuts_title">スピードを極める</string>
+    <string name="setup_tutorial_shortcuts_desc">アプリを長押ししてカスタムエイリアスを追加。「yt」でYouTube、「maps」でナビなど、自由に設定できます。</string>
+    <string name="setup_tutorial_organize_title">整理整頓</string>
+    <string name="setup_tutorial_organize_desc">よく使うアプリはピン留めに。不要なアプリは非表示に。</string>
+    <string name="setup_completion_title">準備完了</string>
+    <string name="setup_completion_desc">新しいホーム画面の準備ができました。</string>
+    
+    <string name="setup_hint_search">アプリを検索...</string>
+    <string name="setup_hint_shortcut">ショートカットを追加...</string>
+    <string name="setup_customization_title">クイック設定</string>
+    <string name="setup_button_next">次へ</string>
+    <string name="setup_button_get_started">始める</string>
+    <string name="setup_button_grant">許可する</string>
+    <string name="setup_button_granted">許可済み</string>
+
+    <!-- App Organization -->
+    <string name="menu_pin_app">ピン留め</string>
+    <string name="menu_unpin_app">ピン留めを解除</string>
+    <string name="menu_hide_app">アプリを非表示</string>
+    <string name="menu_app_info">アプリ情報</string>
+    <string name="menu_uninstall">アンインストール</string>
+    <string name="section_pinned">ピン留め済み</string>
+    <string name="settings_hidden_apps">非表示のアプリ</string>
+    <string name="settings_hidden_apps_desc">非表示にしたアプリを管理します。</string>
+    <string name="action_unhide">再表示</string>
+    <string name="no_hidden_apps">非表示のアプリはありません</string>
+    <string name="background_blur">背景のぼかし: %1$d</string>
+    <string name="background_opacity">背景の不透明度: %1$d%%</string>
+    <string name="manage_shortcuts">ショートカットを管理</string>
+    <string name="icon_pack_section">アイコンスタイル</string>
+    <string name="icon_pack_default">システム標準</string>
+    <string name="icon_size_label">アイコンサイズ: %1$d%%</string>
+    <string name="show_icon_labels">アプリ名を表示</string>
+    
+    <!-- Shortcuts Dialog -->
+    <string name="add_shortcut_title">ショートカットを追加</string>
+    <string name="add_shortcut_text">%1$s のキーワードを追加</string>
+    <string name="shortcut_keyword_label">ショートカットのキーワード</string>
+    <string name="button_add">追加</string>
+    <string name="button_cancel">キャンセル</string>
+    <string name="button_close">閉じる</string>
+    
+    <!-- Manage Shortcuts -->
+    <string name="manage_shortcuts_hint">アプリ一覧のアプリを長押ししてショートカットを追加できます。</string>
+    <string name="no_shortcuts">ショートカットはまだ追加されていません。</string>
+    
+    <!-- App Context Menu -->
+    
+    <!-- Crash Screen -->
+    <string name="crash_title">おっと！問題が発生しました</string>
+    <string name="crash_unknown_error">不明なエラー</string>
+    <string name="crash_no_stacktrace">スタックトレースがありません</string>
+    <string name="crash_copied">クリップボードにコピーしました</string>
+    <string name="crash_button_copy">エラーをコピー</string>
+    <string name="crash_button_restart">アプリを再起動</string>
+    <string name="blur_status_disabled">システム設定によりぼかしが無効です</string>
+    <string name="blur_troubleshooting">背景がぼけない場合は、Galaxyの「設定 > アクセシビリティ > 視認性向上 > 透過性とぼかしを減らす」がオフになっているか確認してください。</string>
+    <string name="tile_label">検索</string>
+    <string name="shortcut_new_search">新規検索</string>
+    <string name="shortcut_new_search_long">新しい検索を開始します</string>
+    <string name="shortcut_voice_search">音声検索</string>
+    <string name="shortcut_voice_search_long">音声で検索を開始します</string>
+</resources>

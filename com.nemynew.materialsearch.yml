@@ -1,0 +1,34 @@
+Categories:
+  - System
+  - Launcher
+License: Apache-2.0
+SourceCode: https://github.com/YOUR_USER/Material_Search
+IssueTracker: https://github.com/YOUR_USER/Material_Search/issues
+
+AutoName: Material Search
+Summary: A fast, privacy-focused material design search launcher
+Description: |
+    Material Search is a lightweight, privacy-focused launcher app designed solely for fast searching.
+
+    Features:
+    * Fast Search: Instantly find apps on your device.
+    * Privacy Focused: No internet permission required (except for web search intents), no tracking.
+    * Material Design 3: Beautiful, modern UI that adapts to your wallpaper.
+    * Keyboard First: Automatically opens the keyboard for immediate typing.
+    * Shortcuts: Customize shortcuts for your favorite apps.
+
+RepoType: git
+Repo: https://github.com/YOUR_USER/Material_Search
+
+Builds:
+  - versionName: 1.0
+    versionCode: 1
+    commit: v1.0
+    subdir: app
+    gradle:
+      - yes
+
+AutoUpdateMode: Version v%v
+UpdateCheckMode: Tags
+CurrentVersion: 1.0
+CurrentVersionCode: 1

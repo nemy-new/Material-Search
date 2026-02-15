@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shortcuts xmlns:android="http://schemas.android.com/apk/res/android">
+    <shortcut
+        android:shortcutId="new_search"
+        android:enabled="true"
+        android:icon="@drawable/ic_search_tile"
+        android:shortcutShortLabel="@string/shortcut_new_search"
+        android:shortcutLongLabel="@string/shortcut_new_search_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.nemynew.materialsearch"
+            android:targetClass="com.nemynew.materialsearch.MainActivity" />
+    </shortcut>
+    <shortcut
+        android:shortcutId="voice_search"
+        android:enabled="true"
+        android:icon="@drawable/ic_mic"
+        android:shortcutShortLabel="@string/shortcut_voice_search"
+        android:shortcutLongLabel="@string/shortcut_voice_search_long">
+        <intent
+            android:action="android.intent.action.VIEW"
+            android:targetPackage="com.nemynew.materialsearch"
+            android:targetClass="com.nemynew.materialsearch.MainActivity">
+            <extra android:name="EXTRA_START_VOICE" android:value="true" />
+        </intent>
+    </shortcut>
+</shortcuts>

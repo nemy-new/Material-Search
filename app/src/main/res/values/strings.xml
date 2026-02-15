@@ -1,0 +1,96 @@
+<resources>
+    <string name="app_name">Search</string>
+    <string name="search_hint">Search apps...</string>
+    
+    <!-- App UI -->
+    <string name="recent_section">Recent</string>
+    <string name="contacts_section">Contacts</string>
+    <string name="calculator_result">Result</string>
+    <string name="search_on_web">Search on %1$s</string>
+    <string name="speak_now">Speak now...</string>
+    <string name="no_results_found">No results found</string>
+    
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="appearance_section">Appearance</string>
+    <string name="search_bar_position">Search Bar Position</string>
+    <string name="position_top">Top</string>
+    <string name="position_bottom">Bottom</string>
+    <string name="grid_layout_section">Grid Layout</string>
+    <string name="grid_columns">Columns: %1$d</string>
+    <string name="behavior_section">Behavior</string>
+    <string name="auto_show_keyboard">Auto-show Keyboard</string>
+    <string name="customization_section">Customization</string>
+    <string name="background_section">Background</string>
+
+    <!-- Setup Screen -->
+    <string name="setup_welcome_title">Material Search</string>
+    <string name="setup_welcome_subtitle">Fast. Minimal. Focused.</string>
+    <string name="setup_permissions_title">Connect Your World</string>
+    <string name="setup_permissions_contact">Contact Access</string>
+    <string name="setup_permissions_desc">We need access to your contacts to enable instant searching and calling directly from the launcher.</string>
+    <string name="setup_tutorial_search_title">Just Type</string>
+    <string name="setup_tutorial_search_desc">Start typing to find any app instantly. No drawers, no clutter.</string>
+    <string name="setup_tutorial_shortcuts_title">Master Speed</string>
+    <string name="setup_tutorial_shortcuts_desc">Long-press any app to add custom aliases. Type yt for YouTube, maps for Navigation.</string>
+    <string name="setup_tutorial_organize_title">Stay Organized</string>
+    <string name="setup_tutorial_organize_desc">Pin your favorites to the top. Hide distractions you do not need.</string>
+    <string name="setup_completion_title">Ready for Lift-off</string>
+    <string name="setup_completion_desc">Your new home screen is ready.</string>
+    
+    <string name="setup_hint_search">Search apps...</string>
+    <string name="setup_hint_shortcut">Add shortcut...</string>
+    <string name="setup_customization_title">Quick Customization</string>
+    <string name="setup_button_next">Next</string>
+    <string name="setup_button_get_started">Get Started</string>
+    <string name="setup_button_grant">Grant</string>
+    <string name="setup_button_granted">Granted</string>
+
+    <!-- App Organization -->
+    <string name="menu_pin_app">Pin App</string>
+    <string name="menu_unpin_app">Unpin App</string>
+    <string name="menu_hide_app">Hide App</string>
+    <string name="menu_app_info">App Info</string>
+    <string name="menu_uninstall">Uninstall</string> <!-- Existing concept, ensuring consistency -->
+    <string name="section_pinned">Pinned</string>
+    <string name="settings_hidden_apps">Hidden Apps</string>
+    <string name="settings_hidden_apps_desc">Manage apps you have hidden.</string>
+    <string name="action_unhide">Unhide</string>
+    <string name="no_hidden_apps">No hidden apps</string>
+    <string name="background_blur">Background Blur: %1$d</string>
+    <string name="background_opacity">Background Opacity: %1$d%%</string>
+    <string name="manage_shortcuts">Manage Shortcuts</string>
+    <string name="icon_pack_section">Icon Style</string>
+    <string name="icon_pack_default">System Default</string>
+    <string name="icon_size_label">Icon Size: %1$d%%</string>
+    <string name="show_icon_labels">Show App Labels</string>
+    
+    <!-- Shortcuts Dialog -->
+    <string name="add_shortcut_title">Add Shortcut</string>
+    <string name="add_shortcut_text">Add keywords for %1$s</string>
+    <string name="shortcut_keyword_label">Shortcut Keyword</string>
+    <string name="button_add">Add</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_close">Close</string>
+    
+    <!-- Manage Shortcuts -->
+    <string name="manage_shortcuts_hint">Long press an app in the main list to add a shortcut.</string>
+    <string name="no_shortcuts">No shortcuts added yet.</string>
+    
+    <!-- App Context Menu -->
+    
+    <!-- Crash Screen -->
+    <string name="crash_title">Oops! Something went wrong</string>
+    <string name="crash_unknown_error">Unknown Error</string>
+    <string name="crash_no_stacktrace">No stack trace available</string>
+    <string name="crash_copied">Copied to clipboard</string>
+    <string name="crash_button_copy">Copy Error</string>
+    <string name="crash_button_restart">Restart App</string>
+    <string name="blur_status_disabled">Blur is disabled by system settings</string>
+    <string name="blur_troubleshooting">If background is not blurred, check \"Settings > Accessibility > Visibility enhancements > Reduce transparency and blur\" on Galaxy devices.</string>
+    <string name="tile_label">Search</string>
+    <string name="shortcut_new_search">New Search</string>
+    <string name="shortcut_new_search_long">Start a new search</string>
+    <string name="shortcut_voice_search">Voice Search</string>
+    <string name="shortcut_voice_search_long">Start a search with voice</string>
+</resources>

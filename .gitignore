@@ -1,0 +1,17 @@
+# Gradle
+.gradle/
+build/
+app/build/
+local.properties
+
+# Android
+.idea/
+.DS_Store
+*.iml
+*.ide
+.api/
+
+# Keystore (IMPORTANT: Do not upload this to public GitHub)
+*.jks
+check_keystore.sh
+app/release-key.jks
