@@ -1,44 +1,44 @@
 # Material Search
 
-Material Search is a fast, lightweight app launcher and search tool for Android, designed with Material 3 aesthetics and a focus on Japanese/English bi-directional search usability.
+Material Searchは、Material 3のデザインに基づいた、高速で軽量なAndroid用アプリランチャー兼検索ツールです。日本語と英語の双方向検索における使いやすさに特化しています。
 
-## Core Features
+## 主な機能
 
-### 🔍 Intelligent Search
-- **Instant Result**: Near-zero latency pre-indexed searching.
-- **Bi-directional Support**: Search Japanese apps with English keywords (and vice versa).
-- **Extensive Synonyms**: Built-in support for thousands of synonyms across categories like Gaming, SNS, Finance, and Public Transport.
-- **Relevance Sorting**: Results are ranked by match quality (Exact > Prefix > Contains).
-- **Phonetic Search**: Supports Romaji-to-Kana and Hiragana-to-Katakana matching.
+### 🔍 インテリジェント検索
+- **爆速検索**: 事前インデックスにより、入力と同時に結果が表示される低レイテンシな検索を実現。
+- **双方向サポート**: 日本語のアプリを英語のキーワードで、英語のアプリを日本語のキーワードで検索可能。
+- **膨大なシノニム（類義語）**: ゲーム、SNS、金融、公共交通機関など、幅広いカテゴリのシノニムを数千件以上内蔵。
+- **関連度順ソート**: 一致度（完全一致 > 前方一致 > 部分一致）に基づいて結果を最適にランク付け。
+- **かな・ローマ字対応**: ローマ字から、かなへの変換や、ひらがな・カタカナの揺れを考慮したマッチングに対応。
 
-### 🛠️ Functionality
-- **Contact Search**: Quick access to system contacts.
-- **Calculator**: Real-time math evaluation directly in the search bar.
-- **Quick Launch**: "Enter" key behavior to launch the top result automatically.
-- **App Management**: Long-press any app to Pin, Hide, Uninstall, or view App Info.
-- **Voice Search**: Built-in microphone support for hands-free queries.
+### 🛠️ ユーティリティ
+- **連絡先検索**: システムの連絡先へのクイックアクセス。
+- **計算機**: 検索バーに数式を入力するだけで、リアルタイムに計算結果を表示。
+- **クイック起動**: エンターキーで一番上の結果を自動的に起動する設定が可能。
+- **アプリ管理**: アプリを長押しすることで、ピン留め、非表示、アンインストール、アプリ情報の確認が可能。
+- **音声検索**: マイクボタンによる音声入力検索をサポート。
 
-### 🎨 Customization
-- **Acrylic Background**: Frosted glass effect using AGSL (supports dynamic light/dark mode).
-- **Grid Layout**: Adjustable column count (3 to 6 columns).
-- **Icon Visibility**: Support for Icon Packs, adjustable icon sizing, and the ability to hide labels.
-- **Search Bar Position**: Choose between Top or Bottom placement.
+### 🎨 カスタマイズ
+- **アクリル背景**: AGSLを使用した「すりガラス」効果（ライト/ダークモードに動的に対応）。
+- **グリッドレイアウト**: 3列から6列まで、好みの列数に調整可能。
+- **アイコン設定**: アイコンパックの適用、サイズの調整、ラベルの非表示に対応。
+- **検索バーの配置**: 画面の「上部」または「下部」を選択可能。
 
-### ⚡ Integration
-- **Digital Assistant Support**: Can be set as the default "Assist App" in Android settings.
-- **Quick Settings Tile**: Launch search instantly from the system notification shade.
-- **Launcher Shortcuts**: Long-press the launcher icon for quick actions.
+### ⚡ システム連携
+- **デジタルアシスタント対応**: Android設定からデフォルトの「デジタルアシスタントアプリ」として設定可能。
+- **クイック設定タイル**: 通知領域から瞬時に検索を起動可能。
+- **ランチャーショートカット**: ホーム画面のアイコン長押しから主要なアクションにアクセス可能。
 
-## Usage
+## 使い方
 
-1. **Search**: Start typing in the bar. Results update instantly.
-2. **Launch**: Tap an icon or press "Enter" to launch the top result.
-3. **Manage**: Long-press an icon to access the management menu (Pin/Hide/Info).
-4. **Settings**: Swipe to the top-level or use the settings icon to open full-screen configuration.
+1. **検索**: 検索バーに入力を開始すると、即座に結果が表示されます。
+2. **起動**: アイコンをタップするか、エンターキーを押して一番上のアプリを起動します。
+3. **管理**: アプリを長押しすると、管理メニュー（ピン留め/非表示/情報）が開きます。
+4. **設定**: 画面を最上部までスクロールするか、設定アイコンをタップしてフル画面の設定パネルを開きます。
 
-## Requirements
-- Android 7.0 (API 24) or higher.
-- (Optional) Device support for AGSL for the high-quality blur effect (Software fallbacks included).
+## 要件
+- Android 7.0 (API 24) 以上。
+- (任意) 高品質なぼかし効果（AGSL）を利用するには、デバイスがAGSLをサポートしている必要があります（ソフトウェア・フォールバック機能内蔵）。
 
-## License
+## ライセンス
 Apache License 2.0
