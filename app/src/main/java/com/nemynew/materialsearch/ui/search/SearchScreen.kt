@@ -58,6 +58,10 @@ import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Edit
 import androidx.compose.material.icons.filled.Refresh
 import androidx.compose.material.icons.filled.ShoppingCart
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.graphics.asComposeRenderEffect
 import androidx.compose.material.icons.filled.Star
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Checkbox
@@ -97,6 +101,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.asImageBitmap
+import androidx.compose.ui.zIndex
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
@@ -118,6 +123,8 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.offset
 import android.content.Intent
 import android.speech.RecognizerIntent
 import android.net.Uri
@@ -214,7 +221,9 @@ private fun evaluateMath(expr: String): String? {
 @Composable
 fun SearchScreen(
     startVoice: Boolean = false,
-    onVoiceTriggered: () -> Unit = {}
+    shouldFocusSearch: Boolean = false,
+    onVoiceTriggered: () -> Unit = {},
+    onFocusTriggered: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val appRepository = remember { AppRepository(context) }
@@ -240,10 +249,60 @@ fun SearchScreen(
     val iconPackPackage by settingsRepository.iconPackPackage.collectAsState(initial = "")
     val iconSize by settingsRepository.iconSize.collectAsState(initial = 1.0f)
     val showIconLabels by settingsRepository.showIconLabels.collectAsState(initial = true)
-    val isBlurEnabled by MainActivity.isBlurEnabled
     val pinnedApps by userPreferencesRepository.pinnedApps.collectAsState(initial = emptySet())
     val hiddenApps by userPreferencesRepository.hiddenApps.collectAsState(initial = emptySet())
     var showSettingsDialog by remember { mutableStateOf(false) }
+
+    // Permissions
+    var hasContactPermission by remember {
+        mutableStateOf(
+            ContextCompat.checkSelfPermission(
+                context,
+                 Manifest.permission.READ_CONTACTS
+            ) == PackageManager.PERMISSION_GRANTED
+        )
+    }
+
+    val launcher = rememberLauncherForActivityResult(
+        contract = ActivityResultContracts.RequestPermission(),
+        onResult = { isGranted: Boolean ->
+            hasContactPermission = isGranted
+            if (isGranted) {
+                scope.launch {
+                    contactRepository.loadContacts()
+                }
+            }
+        }
+    )
+
+    val recentAppsRepository = remember { com.nemynew.materialsearch.data.RecentAppsRepository(context) }
+    
+    // Enter Key Logic
+    val openBestMatchOnEnter by settingsRepository.openBestMatchOnEnter.collectAsState(initial = true)
+    
+    fun onSearchAction() {
+        if (openBestMatchOnEnter && query.isNotEmpty()) {
+            val bestApp = apps.firstOrNull()
+            val bestContact = if (hasContactPermission) contacts.firstOrNull() else null
+            
+            // Prioritize App over Contact if both exist (or based on list order)
+            if (bestApp != null) {
+                scope.launch { recentAppsRepository.addRecentApp(android.content.ComponentName(bestApp.packageName, bestApp.componentName).flattenToString()) }
+                haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
+                context.startActivity(bestApp.intent)
+                return
+            } else if (bestContact != null) {
+                 val intent = android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
+                    data = android.net.Uri.withAppendedPath(android.provider.ContactsContract.Contacts.CONTENT_URI, bestContact.id)
+                    addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                }
+                context.startActivity(intent)
+                return
+            }
+        }
+        // Default behavior (hide keyboard) or web search if implemented later
+        // focusManager.clearFocus() // require focusManager
+    }
 
     val gridState = androidx.compose.foundation.lazy.grid.rememberLazyGridState()
 
@@ -275,27 +334,6 @@ fun SearchScreen(
         }
     )
 
-    // Permissions
-    var hasContactPermission by remember {
-        mutableStateOf(
-            ContextCompat.checkSelfPermission(
-                context,
-                Manifest.permission.READ_CONTACTS
-            ) == PackageManager.PERMISSION_GRANTED
-        )
-    }
-
-    val launcher = rememberLauncherForActivityResult(
-        contract = ActivityResultContracts.RequestPermission(),
-        onResult = { isGranted: Boolean ->
-            hasContactPermission = isGranted
-            if (isGranted) {
-                scope.launch {
-                    contactRepository.loadContacts()
-                }
-            }
-        }
-    )
 
     // App Management Dialog
     var showAppMenu by remember { mutableStateOf(false) }
@@ -517,7 +555,7 @@ fun SearchScreen(
             apps.find { android.content.ComponentName(it.packageName, it.componentName).flattenToString() == componentName }
         }
     }
-    val recentAppsRepository = remember { com.nemynew.materialsearch.data.RecentAppsRepository(context) }
+    // recentAppsRepository moved up
 
     LaunchedEffect(startVoice) {
         if (startVoice) {
@@ -526,6 +564,18 @@ fun SearchScreen(
             }
             voiceLauncher.launch(intent)
             onVoiceTriggered()
+        }
+    }
+
+    LaunchedEffect(shouldFocusSearch) {
+        if (shouldFocusSearch) {
+            query = "" // Reset query for fresh search
+            // Wait a bit for window focus
+            kotlinx.coroutines.delay(100)
+            runCatching {
+                focusRequester.requestFocus()
+            }
+            onFocusTriggered()
         }
     }
 
@@ -550,6 +600,7 @@ fun SearchScreen(
 
     LaunchedEffect(query, userShortcuts) {
         val allApps = appRepository.searchApps(query, userShortcuts)
+            .distinctBy { "${it.packageName}/${it.componentName}" }
         apps = allApps.filter { 
             val key = "${it.packageName}/${it.componentName}"
             key !in hiddenApps
@@ -559,16 +610,43 @@ fun SearchScreen(
         }
     }
 
+    val configuration = androidx.compose.ui.platform.LocalConfiguration.current
+    val screenWidth = configuration.screenWidthDp.dp
+    
+    val gridSpacing = when {
+        gridColumnCount <= 4 -> 16.dp
+        gridColumnCount == 5 -> 12.dp
+        else -> 8.dp
+    }
+    val itemPadding = when {
+        gridColumnCount <= 4 -> 8.dp
+        gridColumnCount == 5 -> 4.dp
+        else -> 2.dp
+    }
+
+    // Calculate exact width of one grid cell to match History icons with Grid icons
+    // Content padding is 16.dp on each side (total 32.dp)
+    val totalHorizontalPadding = 32.dp
+    val itemWidth = (screenWidth - totalHorizontalPadding - (gridSpacing * (gridColumnCount - 1))) / gridColumnCount
+
+    val isLightMode = !androidx.compose.foundation.isSystemInDarkTheme()
+    val backgroundColor = if (isLightMode) {
+        MaterialTheme.colorScheme.surfaceContainer // Slightly darker variant for light mode
+    } else {
+        MaterialTheme.colorScheme.surfaceContainerLow // Keep it bright for dark mode glass effect
+    }
+
     Box(
         modifier = Modifier.fillMaxSize()
     ) {
         // Use forced procedural blur (AGSL) as the primary background
         AcrylicBackground(
             modifier = Modifier.fillMaxSize(),
-            blurIntensity = if (isBlurEnabled) 1.0f else 2.5f, // Intensify if system blur is off
-            color = MaterialTheme.colorScheme.surfaceContainerLow.copy(
+            blurIntensity = 1.0f, // Always use high quality procedural blur
+            color = backgroundColor.copy(
                 alpha = backgroundAlphaSetting
-            )
+            ),
+            isLightMode = isLightMode
         )
 
         // App List
@@ -581,8 +659,8 @@ fun SearchScreen(
                 start = 16.dp,
                 end = 16.dp
             ),
-            verticalArrangement = Arrangement.spacedBy(16.dp),
-            horizontalArrangement = Arrangement.spacedBy(16.dp),
+            verticalArrangement = Arrangement.spacedBy(gridSpacing),
+            horizontalArrangement = Arrangement.spacedBy(gridSpacing),
             modifier = Modifier.fillMaxSize()
         ) {
         // Math Result
@@ -636,8 +714,8 @@ fun SearchScreen(
                             modifier = Modifier.padding(start = 8.dp, bottom = 8.dp)
                         )
                         androidx.compose.foundation.lazy.LazyRow(
-                            horizontalArrangement = Arrangement.spacedBy(16.dp),
-                            contentPadding = PaddingValues(horizontal = 8.dp)
+                            horizontalArrangement = Arrangement.spacedBy(gridSpacing),
+                            contentPadding = PaddingValues(horizontal = gridSpacing / 2)
                         ) {
                             items(recentApps, key = { app -> "recent_${app.packageName}/${app.componentName}" }) { app ->
                                 AppItem(
@@ -646,6 +724,8 @@ fun SearchScreen(
                                     iconPackPackage = iconPackPackage,
                                     iconSize = iconSize,
                                     showIconLabels = showIconLabels,
+                                    itemPadding = itemPadding,
+                                    modifier = Modifier.width(itemWidth),
                                     onClick = { 
                                         scope.launch { recentAppsRepository.addRecentApp(android.content.ComponentName(app.packageName, app.componentName).flattenToString()) }
                                         haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
@@ -669,6 +749,10 @@ fun SearchScreen(
 
             // Contacts Section
             if (contacts.isNotEmpty()) {
+                val bestMatchKey = if (query.isNotEmpty() && openBestMatchOnEnter && apps.isEmpty()) {
+                    "contact_${contacts.first().id}"
+                } else null
+
                 item(span = { GridItemSpan(maxLineSpan) }) {
                     Text(
                         text = stringResource(R.string.contacts_section),
@@ -680,6 +764,9 @@ fun SearchScreen(
                 items(contacts, key = { contact -> "contact_${contact.id}" }) { contact ->
                     ContactItem(
                         contact = contact,
+                        isBestMatch = "contact_${contact.id}" == bestMatchKey,
+                        iconSize = iconSize,
+                        itemPadding = itemPadding, // Pass itemPadding
                         onClick = {
                             val intent = android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
                                 data = android.net.Uri.withAppendedPath(android.provider.ContactsContract.Contacts.CONTENT_URI, contact.id)
@@ -713,12 +800,13 @@ fun SearchScreen(
                     )
                 }
                 items(pinnedList, key = { app -> "pinned_${app.packageName}/${app.componentName}" }) { app ->
-                     AppItem(
+                      AppItem(
                         app = app,
                         iconPackManager = iconPackManager,
                         iconPackPackage = iconPackPackage,
                         iconSize = iconSize,
                         showIconLabels = showIconLabels,
+                        itemPadding = itemPadding,
                         onClick = { 
                             scope.launch { recentAppsRepository.addRecentApp(android.content.ComponentName(app.packageName, app.componentName).flattenToString()) }
                             haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
@@ -740,12 +828,16 @@ fun SearchScreen(
 
             // Apps Section
             items(unpinnedList, key = { app -> "${app.packageName}/${app.componentName}" }) { app ->
+                val isBestMatch = query.isNotEmpty() && openBestMatchOnEnter && 
+                                 app == unpinnedList.firstOrNull() && pinnedList.isEmpty()
                 AppItem(
                     app = app,
                     iconPackManager = iconPackManager,
                     iconPackPackage = iconPackPackage,
                     iconSize = iconSize,
                     showIconLabels = showIconLabels,
+                    isBestMatch = isBestMatch,
+                    itemPadding = itemPadding,
                     onClick = { 
                         scope.launch { recentAppsRepository.addRecentApp(android.content.ComponentName(app.packageName, app.componentName).flattenToString()) }
                         haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
@@ -900,31 +992,14 @@ fun SearchScreen(
                     fontSize = 18.sp
                 ),
                 cursorBrush = SolidColor(MaterialTheme.colorScheme.primary),
-                keyboardOptions = KeyboardOptions(imeAction = ImeAction.Go),
-                keyboardActions = KeyboardActions(onGo = {
-                    if (apps.isNotEmpty()) {
-                         val app = apps.first()
-                         scope.launch { recentAppsRepository.addRecentApp(android.content.ComponentName(app.packageName, app.componentName).flattenToString()) }
-                         haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
-                         context.startActivity(app.intent)
-                    } else if (contacts.isNotEmpty()) {
-                        val contact = contacts.first()
-                        val intent = android.content.Intent(android.content.Intent.ACTION_VIEW).apply {
-                            data = android.net.Uri.withAppendedPath(android.provider.ContactsContract.Contacts.CONTENT_URI, contact.id)
-                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        }
-                        haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
-                        context.startActivity(intent)
-                    } else if (query.isNotEmpty()) {
-                        // Default to Google search if no other results
-                        val url = "https://www.google.com/search?q=$query"
-                        val intent = android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(url)).apply {
-                            addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        }
-                        haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.LongPress)
-                        context.startActivity(intent)
-                    }
-                }),
+                keyboardOptions = KeyboardOptions(
+                    imeAction = ImeAction.Go 
+                ),
+                keyboardActions = KeyboardActions(
+                    onGo = { onSearchAction() },
+                    onSearch = { onSearchAction() },
+                    onDone = { onSearchAction() }
+                ),
                 singleLine = true,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -1016,6 +1091,9 @@ fun AppItem(
     iconPackPackage: String,
     iconSize: Float,
     showIconLabels: Boolean,
+    isBestMatch: Boolean = false,
+    itemPadding: Dp = 8.dp, // Added itemPadding
+    modifier: Modifier = Modifier,
     onClick: () -> Unit,
     onLongClick: () -> Unit
 ) {
@@ -1057,7 +1135,7 @@ fun AppItem(
 
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
-        modifier = Modifier
+        modifier = modifier
             .combinedClickable(
                 interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() }.also { interactionSource ->
                     LaunchedEffect(interactionSource) {
@@ -1080,39 +1158,78 @@ fun AppItem(
                     onLongClick()
                 }
             )
-            .padding(8.dp)
-            .graphicsLayer {
-                this.alpha = alpha
-                this.scaleX = scaleFactor * scale
-                this.scaleY = scaleFactor * scale
-            }
+            .padding(itemPadding / 2)
+            .graphicsLayer(
+                alpha = alpha,
+                scaleX = scaleFactor * scale,
+                scaleY = scaleFactor * scale
+            )
+            .padding(2.dp)
     ) {
-        if (iconBitmap != null) {
-            Image(
-                bitmap = iconBitmap!!,
-                contentDescription = app.label,
-                modifier = Modifier.size((48 * iconSize).dp)
-            )
-        } else {
-            Box(modifier = Modifier.size((48 * iconSize).dp).background(Color.Gray, CircleShape))
-        }
-        
-        if (showIconLabels) {
-            Spacer(modifier = Modifier.height(8.dp))
-            Text(
-                text = app.label,
-                style = MaterialTheme.typography.bodySmall,
-                color = MaterialTheme.colorScheme.onSurface,
-                textAlign = TextAlign.Center,
-                maxLines = 2,
-                overflow = TextOverflow.Ellipsis
-            )
+        Box(
+            contentAlignment = Alignment.TopEnd,
+            modifier = Modifier
+                .clip(RoundedCornerShape(16.dp))
+                .background(if (isBestMatch) MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f) else Color.Transparent)
+                .then(
+                    if (isBestMatch) Modifier.border(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.5f), RoundedCornerShape(16.dp))
+                    else Modifier
+                )
+                .padding(all = itemPadding)
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                if (iconBitmap != null) {
+                    Image(
+                        bitmap = iconBitmap!!,
+                        contentDescription = app.label,
+                        modifier = Modifier.size((48 * iconSize).dp)
+                    )
+                } else {
+                    Box(modifier = Modifier.size((48 * iconSize).dp).background(Color.Gray, CircleShape))
+                }
+                
+                if (showIconLabels) {
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Text(
+                        text = app.label,
+                        style = MaterialTheme.typography.bodySmall,
+                        color = MaterialTheme.colorScheme.onSurface,
+                        textAlign = TextAlign.Center,
+                        maxLines = 2,
+                        overflow = TextOverflow.Ellipsis
+                    )
+                }
+            }
+            
+            if (isBestMatch) {
+                Surface(
+                    shape = CircleShape,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier
+                        .size(18.dp)
+                        .offset(x = 4.dp, y = (-4).dp)
+                        .zIndex(1f)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier.padding(2.dp)
+                    )
+                }
+            }
         }
     }
 }
 
 @Composable
-fun ContactItem(contact: ContactInfo, onClick: () -> Unit) {
+fun ContactItem(
+    contact: ContactInfo, 
+    isBestMatch: Boolean = false, 
+    iconSize: Float = 1.0f,
+    itemPadding: Dp = 8.dp,
+    onClick: () -> Unit
+) {
     val haptic = androidx.compose.ui.platform.LocalHapticFeedback.current
     
     // Entrance animation
@@ -1143,53 +1260,84 @@ fun ContactItem(contact: ContactInfo, onClick: () -> Unit) {
     Column(
         horizontalAlignment = Alignment.CenterHorizontally,
         modifier = Modifier
-            .graphicsLayer {
-                this.alpha = alpha
-                this.scaleX = scaleFactor * pressScale
-                this.scaleY = scaleFactor * pressScale
-            }
-            .clip(RoundedCornerShape(16.dp))
-            .clickable(
-                onClick = {
-                    haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove)
-                    onClick()
-                },
-                indication = null,
-                interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() }.also { interactionSource ->
-                    LaunchedEffect(interactionSource) {
-                        interactionSource.interactions.collect { interaction ->
-                            when (interaction) {
-                                is androidx.compose.foundation.interaction.PressInteraction.Press -> isPressed = true
-                                is androidx.compose.foundation.interaction.PressInteraction.Release -> isPressed = false
-                                is androidx.compose.foundation.interaction.PressInteraction.Cancel -> isPressed = false
+            .graphicsLayer(
+                alpha = alpha,
+                scaleX = scaleFactor * pressScale,
+                scaleY = scaleFactor * pressScale
+            )
+            .padding(itemPadding / 2)
+    ) {
+        Box(
+            contentAlignment = Alignment.TopEnd,
+            modifier = Modifier
+                .clip(RoundedCornerShape(16.dp))
+                .background(if (isBestMatch) MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.3f) else Color.Transparent)
+                .then(
+                    if (isBestMatch) Modifier.border(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.5f), RoundedCornerShape(16.dp))
+                    else Modifier
+                )
+                .clickable(
+                    onClick = {
+                        haptic.performHapticFeedback(androidx.compose.ui.hapticfeedback.HapticFeedbackType.TextHandleMove)
+                        onClick()
+                    },
+                    indication = null,
+                    interactionSource = remember { androidx.compose.foundation.interaction.MutableInteractionSource() }.also { interactionSource ->
+                        LaunchedEffect(interactionSource) {
+                            interactionSource.interactions.collect { interaction ->
+                                when (interaction) {
+                                    is androidx.compose.foundation.interaction.PressInteraction.Press -> isPressed = true
+                                    is androidx.compose.foundation.interaction.PressInteraction.Release -> isPressed = false
+                                    is androidx.compose.foundation.interaction.PressInteraction.Cancel -> isPressed = false
+                                }
                             }
                         }
                     }
-                }
-            )
-            .padding(8.dp)
-    ) {
-        Surface(
-            shape = CircleShape,
-            color = MaterialTheme.colorScheme.secondaryContainer,
-            modifier = Modifier.size(56.dp)
+                )
+                .padding(all = itemPadding)
         ) {
-            Box(contentAlignment = Alignment.Center) {
-                Icon(
-                    imageVector = Icons.Default.Person,
-                    contentDescription = null,
-                    tint = MaterialTheme.colorScheme.onSecondaryContainer,
-                    modifier = Modifier.size(32.dp)
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                Surface(
+                    shape = CircleShape,
+                    color = MaterialTheme.colorScheme.secondaryContainer,
+                    modifier = Modifier.size((56 * iconSize).dp) // Use iconSize
+                ) {
+                    Box(contentAlignment = Alignment.Center) {
+                        Icon(
+                            imageVector = Icons.Default.Person,
+                            contentDescription = null,
+                            tint = MaterialTheme.colorScheme.onSecondaryContainer,
+                            modifier = Modifier.size((32 * iconSize).dp) // Use iconSize
+                        )
+                    }
+                }
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = contact.name,
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.onSurface,
+                    maxLines = 1,
+                    modifier = Modifier.align(Alignment.CenterHorizontally)
                 )
             }
+
+            if (isBestMatch) {
+                Surface(
+                    shape = CircleShape,
+                    color = MaterialTheme.colorScheme.primary,
+                    modifier = Modifier
+                        .size(18.dp)
+                        .offset(x = 4.dp, y = (-4).dp)
+                        .zIndex(1f)
+                ) {
+                    Icon(
+                        imageVector = Icons.Default.PlayArrow,
+                        contentDescription = null,
+                        tint = MaterialTheme.colorScheme.onPrimary,
+                        modifier = Modifier.padding(2.dp)
+                    )
+                }
+            }
         }
-        Spacer(modifier = Modifier.height(8.dp))
-        Text(
-            text = contact.name,
-            style = MaterialTheme.typography.labelMedium,
-            color = MaterialTheme.colorScheme.onSurface,
-            maxLines = 1,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
-        )
     }
 }

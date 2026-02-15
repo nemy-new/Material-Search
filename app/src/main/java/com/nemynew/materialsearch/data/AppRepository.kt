@@ -294,36 +294,74 @@ class AppRepository(private val context: Context) {
         val romajiQuery = getRomajiFromKana(normalizedQuery)
         
         return withContext(Dispatchers.Default) {
-            cachedApps.filter { cachedApp ->
-                // 1. User Shortcuts Check (Manual overrides)
-                // userShortcuts map is: shortcut -> "packageName|componentName"
+            cachedApps.mapNotNull { cachedApp ->
+                var score = 0
+                
+                // 1. User Shortcuts Check (Manual overrides - HIGHEST PRIORITY)
                 if (userShortcuts.isNotEmpty()) {
                     val target = userShortcuts[query.lowercase()] ?: userShortcuts[normalizedQuery]
                     if (target != null) {
-                         val (pkg, cls) = target.split("|")
-                         if (cachedApp.appInfo.packageName == pkg && cachedApp.appInfo.componentName == cls) {
-                             return@filter true
-                         }
+                        val (pkg, cls) = target.split("|")
+                        if (cachedApp.appInfo.packageName == pkg && cachedApp.appInfo.componentName == cls) {
+                            score = 1000 // Ultimate match
+                        }
+                    } else {
+                        // Prefix match for user shortcuts
+                        val match = userShortcuts.entries.find { (key, _) ->
+                             key.startsWith(query.lowercase()) ||
+                             key.startsWith(normalizedQuery) ||
+                             key.startsWith(romajiQuery) 
+                        }
+                        if (match != null) {
+                            val (pkg, cls) = match.value.split("|")
+                            if (cachedApp.appInfo.packageName == pkg && cachedApp.appInfo.componentName == cls) {
+                                score = 800 // High priority shortcut prefix
+                            }
+                        }
                     }
-                    // Also check if query partially matches a user shortcut? 
-                    // Usually manual shortcuts are exact matches or simple prefixes.
-                    // For now, let's stick to exact match for the shortcut key logic in repository.
                 }
 
-                // 2. Standard contains check
-                if (cachedApp.normalizedLabel.contains(normalizedQuery, ignoreCase = true)) return@filter true
-                
-                // 3. Romaji -> Kana check (e.g. query "kamera" matches app "カメラ")
-                if (cachedApp.normalizedLabel.contains(kanaQuery, ignoreCase = true)) return@filter true
-                
-                // 4. Kana -> Romaji check (e.g. query "げん" matches app "Genshin")
-                if (cachedApp.normalizedLabel.contains(romajiQuery, ignoreCase = true)) return@filter true
+                // Skip if already found via shortcut with high score
+                if (score < 800) {
+                    // 2. Exact matches
+                    if (cachedApp.normalizedLabel == normalizedQuery) {
+                        score = 500
+                    } else if (cachedApp.normalizedLabel == kanaQuery || cachedApp.normalizedLabel == romajiQuery) {
+                        score = 450
+                    }
+                    // 3. Static Shortcuts matches
+                    else if (cachedApp.associatedShortcuts.any { it == normalizedQuery || it == romajiQuery }) {
+                        score = 400
+                    }
+                    // 4. Prefix matches
+                    else if (cachedApp.normalizedLabel.startsWith(normalizedQuery, ignoreCase = true)) {
+                        score = 300
+                    } else if (cachedApp.normalizedLabel.startsWith(kanaQuery, ignoreCase = true) || 
+                               cachedApp.normalizedLabel.startsWith(romajiQuery, ignoreCase = true)) {
+                        score = 250
+                    }
+                    // 5. Static Shortcut prefix matches
+                    else if (cachedApp.associatedShortcuts.any { it.startsWith(normalizedQuery) || it.startsWith(romajiQuery) }) {
+                        score = 200
+                    }
+                    // 6. Contains matches (Lowest relevance)
+                    else if (cachedApp.normalizedLabel.contains(normalizedQuery, ignoreCase = true)) {
+                        score = 100
+                    } else if (cachedApp.normalizedLabel.contains(kanaQuery, ignoreCase = true) || 
+                               cachedApp.normalizedLabel.contains(romajiQuery, ignoreCase = true)) {
+                        score = 80
+                    }
+                }
 
-                // 5. Static Shortcuts check (Pre-computed)
-                if (cachedApp.associatedShortcuts.any { it.startsWith(normalizedQuery) }) return@filter true
-
-                false
-            }.map { it.appInfo }
+                if (score > 0) {
+                    score to cachedApp
+                } else {
+                    null
+                }
+            }
+            .sortedWith(compareByDescending<Pair<Int, CachedApp>> { it.first }
+                .thenBy { it.second.appInfo.label.lowercase() })
+            .map { it.second.appInfo }
         }
     }
 }

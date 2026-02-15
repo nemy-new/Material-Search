@@ -35,6 +35,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.Keyboard
 import androidx.compose.material.icons.filled.Layers
 import androidx.compose.material.icons.filled.Palette
+import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.filled.Smartphone
 import androidx.compose.material.icons.filled.TextFields
@@ -139,6 +140,15 @@ fun SettingsScreen(
                     icon = Icons.Default.Keyboard,
                     checked = autoShowKeyboard,
                     onCheckedChange = { scope.launch { settingsRepository.setAutoShowKeyboard(it) } }
+                )
+            }
+            item {
+                val openBestMatchOnEnter by settingsRepository.openBestMatchOnEnter.collectAsState(initial = true)
+                SettingsSwitch(
+                    title = stringResource(R.string.open_best_match_on_enter),
+                    icon = Icons.Default.PlayArrow, // Using PlayArrow as a proxy for "Go/Enter" action
+                    checked = openBestMatchOnEnter,
+                    onCheckedChange = { scope.launch { settingsRepository.setOpenBestMatchOnEnter(it) } }
                 )
             }
             item {

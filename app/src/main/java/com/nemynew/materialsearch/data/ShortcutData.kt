@@ -2214,6 +2214,300 @@ object ShortcutData {
         "fgo" to listOf("FGO", "Fate/Grand Order"),
         "pazudora" to listOf("Puzzle & Dragons", "パズドラ"),
         "puzz" to listOf("Puzzle & Dragons", "パズドラ"),
-        "game" to listOf("Google Play Games", "Game Launcher", "ゲーム")
-    )
+        "game" to listOf("Google Play Games", "Game Launcher", "ゲーム"),
+
+        // ==========================================
+        // 64. Transportation IC & Points (交通系IC / ポイント / 定期)
+        // ==========================================
+        
+        // --- Mobile Suica (モバイルSuica) ---
+        "suica" to listOf("Mobile Suica", "Google Pay", "Suica"),
+        "sui" to listOf("Mobile Suica", "Suica"),
+        "suika" to listOf("Mobile Suica", "スイカ"),
+        "すいか" to listOf("Mobile Suica", "スイカ"),
+        "penguin" to listOf("Mobile Suica", "Suica", "ペンギン"), // キャラクター検索
+        "jre" to listOf("Mobile Suica", "JRE POINT", "JRE"), // JRE関連
+        
+        // --- Mobile PASMO (モバイルPASMO) ---
+        "pasmo" to listOf("Mobile PASMO", "Google Pay", "PASMO"),
+        "pas" to listOf("Mobile PASMO", "PASMO"),
+        "pasumo" to listOf("Mobile PASMO", "パスモ"),
+        "ぱすも" to listOf("Mobile PASMO", "パスモ"),
+        "pink" to listOf("Mobile PASMO", "PASMO"), // イメージカラー
+
+        // --- Mobile ICOCA (モバイルICOCA) ---
+        "icoca" to listOf("Mobile ICOCA", "Google Pay", "ICOCA"),
+        "ico" to listOf("Mobile ICOCA", "ICOCA"),
+        "ikoka" to listOf("Mobile ICOCA", "イコカ"),
+        "いこか" to listOf("Mobile ICOCA", "イコカ"),
+        "kamo" to listOf("Mobile ICOCA", "ICOCA", "カモノハシ"), // キャラクター
+
+        // --- Regional IC Cards (Balance Check / Compatibility) ---
+        "kitaca" to listOf("IC Card Reader", "Mobile Suica", "キタカ"),
+        "kita" to listOf("IC Card Reader", "キタカ"),
+        "toica" to listOf("IC Card Reader", "Mobile Suica", "トイカ"),
+        "manaca" to listOf("IC Card Reader", "Mobile Suica", "マナカ"),
+        "sugoca" to listOf("IC Card Reader", "Mobile Suica", "スゴカ"),
+        "sugo" to listOf("IC Card Reader", "スゴカ"),
+        "nimoca" to listOf("IC Card Reader", "Mobile Suica", "ニモカ"),
+        "nimo" to listOf("IC Card Reader", "ニモカ"),
+        "hayakaken" to listOf("IC Card Reader", "Mobile Suica", "はやかけん"),
+        "haya" to listOf("IC Card Reader", "はやかけん"),
+        "piwapa" to listOf("PiTaPa", "ピタパ"), // PiTaPaはポストペイで独自アプリあり
+
+        // --- Point Apps (ポイント還元 / 連携) ---
+        "jrepoint" to listOf("JRE POINT", "JRE", "ポイント"),
+        "jrep" to listOf("JRE POINT", "JRE"),
+        "metro" to listOf("Metro Point Club", "To Me CARD", "メトポ"), // 東京メトロ
+        "metopo" to listOf("Metro Point Club", "メトポ"),
+        "tokyu" to listOf("Tokyu Point", "東急", "TOKYU CARD"),
+        "odakyu" to listOf("Odakyu Point", "小田急", "OPカード"),
+
+        // --- IC Card Reader / Balance (残高確認アプリ) ---
+        "nfc" to listOf("NFC Tools", "IC Card Reader", "残高確認"),
+        "reader" to listOf("IC Card Reader", "Card Reader", "リーダー"),
+        "balance" to listOf("Mobile Suica", "IC Card Reader", "残高"),
+        "zan" to listOf("Mobile Suica", "IC Card Reader", "残高"),
+        "zandaka" to listOf("Mobile Suica", "IC Card Reader", "残高"),
+        "ざんだか" to listOf("Mobile Suica", "IC Card Reader", "残高"),
+        
+        // --- Commuter Pass / Travel (定期 / 改札) ---
+        "teiki" to listOf("Mobile Suica", "Mobile PASMO", "定期券"),
+        "ていき" to listOf("Mobile Suica", "Mobile PASMO", "定期"),
+        "pass" to listOf("Mobile Suica", "Mobile PASMO", "定期", "パス"),
+        "commuter" to listOf("Mobile Suica", "Mobile PASMO", "定期"),
+        "gate" to listOf("Mobile Suica", "改札"),
+        "kaisatsu" to listOf("Mobile Suica", "改札"),
+        "touch" to listOf("Google Wallet", "タッチ決済"),
+
+        // --- Shinkansen / Express (新幹線 / 特急連携) ---
+        "ex" to listOf("EX App", "Smart EX", "EXアプリ", "新幹線"),
+        "smartex" to listOf("Smart EX", "スマートEX"),
+        "sumae" to listOf("Smart EX", "スマEX"),
+        "shinkansen" to listOf("EX App", "Mobile Suica", "新幹線"),
+        "eki" to listOf("Eki-Net", "Mobile Suica", "えきねっと"),
+        "net" to listOf("Eki-Net", "えきねっと"),
+
+        // ==========================================
+        // 65. Mobile Carriers & SIM (携帯キャリア / 通信 / 格安SIM)
+        // ==========================================
+        // UQ Mobile (User Context)
+        "uq" to listOf("My UQ mobile", "UQ portal", "UQ"),
+        "myuq" to listOf("My UQ mobile", "UQ"),
+        "yu-kyu" to listOf("My UQ mobile", "UQ"),
+        "ゆーきゅー" to listOf("My UQ mobile", "UQ"),
+        "portal" to listOf("My UQ mobile", "UQ portal", "ポータル"),
+
+        // docomo / ahamo
+        "docomo" to listOf("My docomo", "d Point", "ドコモ"),
+        "dcm" to listOf("My docomo", "ドコモ"),
+        "mydocomo" to listOf("My docomo", "マイドコモ"),
+        "ahamo" to listOf("ahamo", "アハモ"),
+        "ah" to listOf("ahamo", "アハモ"),
+
+        // au / povo
+        "au" to listOf("My au", "au PAY", "エーユー"),
+        "myau" to listOf("My au", "マイエーユー"),
+        "povo" to listOf("povo", "ポヴォ"),
+        "pobo" to listOf("povo", "ポヴォ"),
+        "1.0" to listOf("povo", "ポヴォ"), // 旧プラン名残
+        "2.0" to listOf("povo", "ポヴォ"),
+
+        // SoftBank / LINEMO
+        "sb" to listOf("My SoftBank", "SoftBank", "ソフトバンク"),
+        "soft" to listOf("My SoftBank", "SoftBank", "ソフトバンク"),
+        "linemo" to listOf("LINEMO", "ラインモ"),
+        "line" to listOf("LINEMO", "LINE", "ラインモ"), // LINEと被るが候補へ
+
+        // Rakuten Mobile
+        "rakutenmobile" to listOf("my Rakuten Mobile", "楽天モバイル"),
+        "rm" to listOf("my Rakuten Mobile", "楽天モバイル"),
+        "mobile" to listOf("my Rakuten Mobile", "モバイル"),
+        "rakumoba" to listOf("my Rakuten Mobile", "楽天モバイル"),
+        "らくもば" to listOf("my Rakuten Mobile", "楽天モバイル"),
+
+        // Y!mobile / Others
+        "ymobile" to listOf("My Y!mobile", "ワイモバイル"),
+        "ym" to listOf("My Y!mobile", "ワイモバイル"),
+        "wai" to listOf("My Y!mobile", "ワイモバイル"),
+        "mineo" to listOf("mineo", "マイネオ"),
+        "iij" to listOf("IIJmio", "みおふぉん"),
+
+        // ==========================================
+        // 66. Security & Passwords (セキュリティ / パスワード)
+        // ==========================================
+        "pass" to listOf("1Password", "Bitwarden", "Google Password Manager", "パスワード"),
+        "1pass" to listOf("1Password", "ワンパス"),
+        "bit" to listOf("Bitwarden", "ビットウォーデン"),
+        "warden" to listOf("Bitwarden", "ウォーデン"),
+        "last" to listOf("LastPass", "ラストパス"),
+        "auth" to listOf("Authenticator", "Authy", "Microsoft Authenticator", "認証"),
+        "authy" to listOf("Authy", "オーシー"),
+        "virus" to listOf("VirusBuster", "McAfee", "ウイルスバスター"),
+        "buster" to listOf("VirusBuster", "バスター"),
+        "norton" to listOf("Norton", "ノートン"),
+
+        // ==========================================
+        // 67. Creative & Editing (動画編集 / 加工 / イラスト)
+        // ==========================================
+        // Video Editing (Shorts/TikTok用)
+        "cap" to listOf("CapCut", "キャップカット"),
+        "cut" to listOf("CapCut", "InShot", "カット"),
+        "vn" to listOf("VN", "動画編集"),
+        "inshot" to listOf("InShot", "インショット"),
+        "premiere" to listOf("Adobe Premiere Rush", "プレミア"),
+        "rush" to listOf("Adobe Premiere Rush", "ラッシュ"),
+
+        // Illustration / Paint
+        "ibis" to listOf("ibisPaint X", "アイビス"),
+        "paint" to listOf("ibisPaint X", "Clip Studio", "ペイント"),
+        "clip" to listOf("Clip Studio Paint", "クリスタ"),
+        "studio" to listOf("Clip Studio Paint", "Android Studio", "スタジオ"),
+        "mediban" to listOf("MediBang Paint", "メディバン"),
+        "canvas" to listOf("Canva", "キャンバ"),
+        "canva" to listOf("Canva", "キャンバ"),
+
+        // ==========================================
+        // 68. Cloud Storage (クラウド / ファイル共有)
+        // ==========================================
+        "drop" to listOf("Dropbox", "ドロップボックス"),
+        "dropbox" to listOf("Dropbox", "ドロワー"), // ドロワーと混同ケア
+        "box" to listOf("Box", "Dropbox", "ボックス"),
+        "mega" to listOf("MEGA", "メガ"),
+        "one" to listOf("OneDrive", "Google One", "ワンドライブ"),
+        "onedrive" to listOf("OneDrive", "ワンドライブ"),
+
+        // ==========================================
+        // 69. Keyboard & Input (キーボード / 入力)
+        // ==========================================
+        "gboard" to listOf("Gboard", "キーボード"),
+        "key" to listOf("Gboard", "Simeji", "キーボード"),
+        "simeji" to listOf("Simeji", "シメジ"),
+        "flick" to listOf("flick", "フリック"),
+        "atok" to listOf("ATOK", "エイトック"),
+        "henkan" to listOf("Gboard", "Google Japanese Input", "変換"),
+
+        // ==========================================
+        // 70. Shift & Schedule (バイト / シフト管理)
+        // ==========================================
+        "shift" to listOf("ShiftBoard", "Google Calendar", "シフト"),
+        "board" to listOf("ShiftBoard", "シフトボード"),
+        "shifuto" to listOf("ShiftBoard", "シフト"),
+        "baito" to listOf("ShiftBoard", "Baitoru", "バイト"),
+        "kin" to listOf("Attendance", "勤怠"), // 勤怠管理
+
+        // ==========================================
+        // 71. Music Identification & Lyrics (音楽認識 / 歌詞)
+        // ==========================================
+        "shazam" to listOf("Shazam", "シャザム"),
+        "sha" to listOf("Shazam", "シャザム"),
+        "search" to listOf("Shazam", "Sound Search", "検索"), // 曲検索の文脈
+        "kashi" to listOf("Uta-Net", "Lyric", "歌詞"),
+        "lyric" to listOf("Musixmatch", "Uta-Net", "歌詞"),
+        "uta" to listOf("Uta-Net", "歌ネット"),
+
+        // ==========================================
+        // 72. Browsers (Sub) (サブブラウザ / 特化型)
+        // ==========================================
+        "tor" to listOf("Tor Browser", "Orbot", "トーア"),
+        "onion" to listOf("Tor Browser", "オニオン"),
+        "opera" to listOf("Opera", "Opera GX", "オペラ"),
+        "gx" to listOf("Opera GX", "ゲーミングブラウザ"),
+        "duck" to listOf("DuckDuckGo", "ダックダックゴー"),
+        "ddg" to listOf("DuckDuckGo", "ダック"),
+        "sleipnir" to listOf("Sleipnir", "スレイプニル"),
+
+        // ==========================================
+        // 73. Fast Food (More Chains) (ファストフード追加)
+        // ==========================================
+        "misudo" to listOf("Mister Donut", "ミスド"),
+        "donut" to listOf("Mister Donut", "ドーナツ"),
+        "bk" to listOf("Burger King", "バーガーキング"),
+        "king" to listOf("Burger King", "キング"),
+        "sub" to listOf("Subway", "サブウェイ"), // サブスクと被るが文脈
+        "subway" to listOf("Subway", "サブウェイ"),
+        "kfc" to listOf("KFC", "ケンタッキー"),
+        "lotteria" to listOf("Lotteria", "ロッテリア"),
+
+        // ==========================================
+        // 74. Calculator & Converters (計算 / 単位変換)
+        // ==========================================
+        "unit" to listOf("Unit Converter", "単位変換"),
+        "tani" to listOf("Unit Converter", "単位"),
+        "kawase" to listOf("Currency Converter", "為替"),
+        "currency" to listOf("Currency Converter", "通貨"),
+        "rate" to listOf("Currency Converter", "レート"),
+        "en" to listOf("Currency Converter", "Calculator", "円"),
+        "dollar" to listOf("Currency Converter", "ドル"),
+        
+        // ==========================================
+        // 75. Local & Public (行政 / 地域 - 埼玉意識)
+        // ==========================================
+        "saitama" to listOf("Saitama City App", "埼玉", "県庁"), // 埼玉県民向け
+        "gomi" to listOf("Garbage Collection", "ゴミ分別", "ゴミ"),
+        "shiyakusho" to listOf("Maps", "市役所"),
+        "post" to listOf("Japan Post", "郵便局", "ポスト"),
+
+        // ==========================================
+        // 76. China EC & Import (中国EC / 個人輸入)
+        // ==========================================
+        "taobao" to listOf("Taobao", "淘宝", "タオバオ"),
+        "tao" to listOf("Taobao", "淘宝"),
+        "ali" to listOf("AliExpress", "Alipay", "アリエク"),
+        "aliex" to listOf("AliExpress", "アリエク"),
+        "shein" to listOf("SHEIN", "シーイン"),
+        "temu" to listOf("Temu", "ティームー"),
+        "1688" to listOf("1688", "アリババ"),
+        "yan" to listOf("Xianyu", "闲鱼", "閑魚"), // 中古フリマ
+        "dewu" to listOf("POIZON", "得物"), // スニーカー・ストリート
+        "red" to listOf("Xiaohongshu", "小红书", "RED", "レッド"), // 中国版インスタ
+        "xiaohongshu" to listOf("Xiaohongshu", "小红书"),
+
+        // ==========================================
+        // 77. Chinese Social & Communication (中国SNS / 通信)
+        // ==========================================
+        "wx" to listOf("WeChat", "微信", "ウィーチャット"),
+        "wechat" to listOf("WeChat", "微信"),
+        "qq" to listOf("QQ", "Tencent QQ"),
+        "weibo" to listOf("Weibo", "微博", "ウェイボー"),
+        "douyin" to listOf("TikTok", "Douyin", "抖音"),
+        "tiktok" to listOf("TikTok", "Douyin", "抖音"),
+        "bili" to listOf("Bilibili", "哔哩哔哩", "ビリビリ"),
+        "iqiyi" to listOf("iQIYI", "爱奇艺"),
+        "youku" to listOf("Youku", "优酷"),
+        "tencent" to listOf("Tencent Video", "腾讯视频"),
+
+        // ==========================================
+        // 78. Chinese Travel & Utility (中国旅行 / 生活)
+        // ==========================================
+        "baidu" to listOf("Baidu", "百度", "バイドゥ"),
+        "amap" to listOf("Amap", "Gaode Map", "高德地图"),
+        "gaode" to listOf("Amap", "Gaode Map", "高德地图"),
+        "didi" to listOf("DiDi", "滴滴出行", "ディディ"),
+        "trip" to listOf("Trip.com", "Ctrip", "携程旅行"),
+        "ctrip" to listOf("Trip.com", "Ctrip", "携程"),
+        "meituan" to listOf("Meituan", "美团"), // デリバリー・生活
+        "ele" to listOf("Ele.me", "饿了么"), // デリバリー
+        "zhifu" to listOf("Alipay", "WeChat Pay", "支付宝"), // 決済
+        "alipay" to listOf("Alipay", "支付宝", "アリペイ"),
+        
+        // ==========================================
+        // 79. Regional Banks (地銀 / 地方銀行)
+        // ==========================================
+        // General term
+        "chigin" to listOf("Bank App", "地銀", "銀行"),
+        "ginko" to listOf("Bank App", "銀行"),
+        
+        // Specific Banks (Major ones)
+        "fuku" to listOf("Fukuoka Bank", "福銀", "福岡銀行"),
+        "hama" to listOf("Bank of Yokohama", "浜銀", "横浜銀行"),
+        "chiba" to listOf("Chiba Bank", "千葉銀", "千葉銀行"),
+        "saitama" to listOf("Saitama Resona", "埼玉りそな"),
+        "shizu" to listOf("Shizuoka Bank", "静銀", "静岡銀行"),
+        "hokuyo" to listOf("Hokuyo Bank", "北洋", "北洋銀行"),
+        "kyoto" to listOf("Bank of Kyoto", "京銀", "京都銀行"),
+        "77" to listOf("77 Bank", "七十七銀行"),
+        "nishi" to listOf("Nishi-Nippon City Bank", "西日本シティ"),
+        "joyo" to listOf("Joyo Bank", "常陽", "常陽銀行")
+        )
 }

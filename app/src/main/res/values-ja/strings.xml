@@ -20,6 +20,7 @@
     <string name="grid_columns">列数: %1$d</string>
     <string name="behavior_section">動作</string>
     <string name="auto_show_keyboard">キーボードを自動表示</string>
+    <string name="open_best_match_on_enter">Enterキーで最上位を開く</string>
     <string name="customization_section">カスタマイズ</string>
     <string name="background_section">背景</string>
 
@@ -37,6 +38,10 @@
     <string name="setup_tutorial_organize_desc">よく使うアプリはピン留めに。不要なアプリは非表示に。</string>
     <string name="setup_completion_title">準備完了</string>
     <string name="setup_completion_desc">新しいホーム画面の準備ができました。</string>
+
+    <string name="setup_assistant_title">アシスタントに設定</string>
+    <string name="setup_assistant_desc">Material Searchをデフォルトのデジタルアシスタントアプリに設定します。ホームボタンや電源ボタンの長押しで、瞬時に検索を呼び出せるようになります。</string>
+    <string name="setup_assistant_button">設定を開く</string>
     
     <string name="setup_hint_search">アプリを検索...</string>
     <string name="setup_hint_shortcut">ショートカットを追加...</string>

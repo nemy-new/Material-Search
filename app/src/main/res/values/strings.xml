@@ -20,6 +20,7 @@
     <string name="grid_columns">Columns: %1$d</string>
     <string name="behavior_section">Behavior</string>
     <string name="auto_show_keyboard">Auto-show Keyboard</string>
+    <string name="open_best_match_on_enter">Open best match on Enter</string>
     <string name="customization_section">Customization</string>
     <string name="background_section">Background</string>
 
@@ -37,6 +38,10 @@
     <string name="setup_tutorial_organize_desc">Pin your favorites to the top. Hide distractions you do not need.</string>
     <string name="setup_completion_title">Ready for Lift-off</string>
     <string name="setup_completion_desc">Your new home screen is ready.</string>
+    
+    <string name="setup_assistant_title">Set as Assistant</string>
+    <string name="setup_assistant_desc">Set Material Search as your default Digital Assistant app. This allows you to launch the search instantly by long-pressing the home button or power button.</string>
+    <string name="setup_assistant_button">Open Settings</string>
     
     <string name="setup_hint_search">Search apps...</string>
     <string name="setup_hint_shortcut">Add shortcut...</string>

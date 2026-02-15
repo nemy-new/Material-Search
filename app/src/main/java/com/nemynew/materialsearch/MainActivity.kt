@@ -35,6 +35,7 @@ class MainActivity : ComponentActivity() {
     }
 
     private val startVoiceSignal = mutableStateOf(false)
+    private val focusSearchSignal = mutableStateOf(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
@@ -44,24 +45,38 @@ class MainActivity : ComponentActivity() {
         window.statusBarColor = android.graphics.Color.TRANSPARENT
         window.navigationBarColor = android.graphics.Color.TRANSPARENT
         
-        // Some devices require FLAG_DIM_BEHIND to enable blur
-        window.addFlags(android.view.WindowManager.LayoutParams.FLAG_DIM_BEHIND)
-        window.attributes.dimAmount = 0f
+        // Comprehensive transparency setup for One UI 6+ blur support
         window.setFormat(PixelFormat.TRANSLUCENT)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND)
+        window.addFlags(WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS) // Allow content to overflow into safe areas
+        window.attributes.dimAmount = 0f
+        
+        // This is crucial for Samsung's blur engine and general translucency
+        WindowCompat.setDecorFitsSystemWindows(window, false)
         
         val settingsRepository = com.nemynew.materialsearch.data.SettingsRepository(this)
         
         // Enable blur behind for API 31+
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-            window.addFlags(android.view.WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
+            window.addFlags(WindowManager.LayoutParams.FLAG_BLUR_BEHIND)
             
+            // On some Samsung devices, we need a slight background color to trigger the engine
+            // but for procedural blur, we want the window to be as transparent as possible.
+            window.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(0x01000000))
+
             // Observe blur radius changes
             lifecycleScope.launch {
                 settingsRepository.blurRadius.collect { radius ->
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
-                        window.attributes.blurBehindRadius = radius
-                        window.setBackgroundBlurRadius(radius)
-                        window.attributes = window.attributes // Force update
+                        try {
+                            window.attributes.blurBehindRadius = radius
+                            window.setBackgroundBlurRadius(radius)
+                            window.attributes = window.attributes // Force update
+                        } catch (e: Exception) {
+                            android.util.Log.e("MaterialSearch", "Error setting blur radius: ${e.message}")
+                        }
                     }
                 }
             }
@@ -74,16 +89,9 @@ class MainActivity : ComponentActivity() {
                 isBlurEnabled.value = false
             }
         } else {
+            // Older devices fallback
             isBlurEnabled.value = false
-        }
-        
-        // This is crucial for the transparent background effect
-        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.S) {
-            // Semi-transparent background that works for both light/dark on older devices
             window.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(0xAA000000.toInt()))
-        } else {
-            // Samsung One UI sometimes needs a non-null, near-transparent background to trigger the blur engine
-            window.setBackgroundDrawable(android.graphics.drawable.ColorDrawable(0x01000000)) 
         }
 
         // Check if we should start with voice search (from shortcut or tile)
@@ -109,7 +117,9 @@ class MainActivity : ComponentActivity() {
                     } else {
                         com.nemynew.materialsearch.ui.search.SearchScreen(
                             startVoice = startVoiceSignal.value,
-                            onVoiceTriggered = { startVoiceSignal.value = false }
+                            shouldFocusSearch = focusSearchSignal.value,
+                            onVoiceTriggered = { startVoiceSignal.value = false },
+                            onFocusTriggered = { focusSearchSignal.value = false }
                         )
                     }
                 }
@@ -126,6 +136,10 @@ class MainActivity : ComponentActivity() {
     private fun handleIntent(intent: Intent?) {
         if (intent?.getBooleanExtra("EXTRA_START_VOICE", false) == true) {
             startVoiceSignal.value = true
+        }
+        if (intent?.action == Intent.ACTION_ASSIST) {
+            // When launched as Assistant, force focus on search field
+            focusSearchSignal.value = true
         }
     }
 

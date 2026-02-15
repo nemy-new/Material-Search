@@ -31,7 +31,12 @@ class RecentAppsRepository(private val context: Context) {
             val currentList = if (currentRaw.isBlank()) mutableListOf() else currentRaw.split("|").toMutableList()
 
             // Remove if already exists (to move to front)
-            currentList.remove(componentName)
+            val iterator = currentList.iterator()
+            while (iterator.hasNext()) {
+                if (iterator.next() == componentName) {
+                    iterator.remove()
+                }
+            }
             
             // Add to front
             currentList.add(0, componentName)

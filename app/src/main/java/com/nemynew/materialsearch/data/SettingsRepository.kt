@@ -21,6 +21,7 @@ class SettingsRepository(private val context: Context) {
         val KEY_ICON_SIZE = androidx.datastore.preferences.core.floatPreferencesKey("icon_size")
         val KEY_SHOW_ICON_LABELS = booleanPreferencesKey("show_icon_labels")
         val KEY_IS_FIRST_RUN = booleanPreferencesKey("is_first_run")
+        val KEY_OPEN_BEST_MATCH_ON_ENTER = booleanPreferencesKey("open_best_match_on_enter")
     }
 
     val isSearchBarBottom: Flow<Boolean> = context.settingsDataStore.data
@@ -119,6 +120,17 @@ class SettingsRepository(private val context: Context) {
     suspend fun setFirstRunCompleted() {
         context.settingsDataStore.edit { preferences ->
             preferences[KEY_IS_FIRST_RUN] = false
+        }
+    }
+
+    val openBestMatchOnEnter: Flow<Boolean> = context.settingsDataStore.data
+        .map { preferences ->
+            preferences[KEY_OPEN_BEST_MATCH_ON_ENTER] ?: true // Default to True
+        }
+
+    suspend fun setOpenBestMatchOnEnter(enabled: Boolean) {
+        context.settingsDataStore.edit { preferences ->
+            preferences[KEY_OPEN_BEST_MATCH_ON_ENTER] = enabled
         }
     }
 }

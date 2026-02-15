@@ -49,17 +49,17 @@ fun SetupScreen(
     settingsRepository: SettingsRepository,
     onSetupComplete: () -> Unit
 ) {
-    val pagerState = rememberPagerState(pageCount = { 7 }) 
+    val pagerState = rememberPagerState(pageCount = { 8 }) 
     // 0: Welcome
     // 1: Permissions
     // 2: Tutorial Search
     // 3: Tutorial Shortcuts
     // 4: Tutorial Organize
-    // 5: Customization
-    // 6: Completion
+    // 5: Assistant Setup (New)
+    // 6: Customization
+    // 7: Completion
     
     val scope = rememberCoroutineScope()
-    val context = LocalContext.current
 
     val currentGradient = when (pagerState.currentPage) {
         0 -> Brush.verticalGradient(listOf(MaterialTheme.colorScheme.surface, MaterialTheme.colorScheme.surfaceContainer))
@@ -67,7 +67,8 @@ fun SetupScreen(
         2 -> Brush.verticalGradient(listOf(MaterialTheme.colorScheme.secondaryContainer, MaterialTheme.colorScheme.tertiaryContainer))
         3 -> Brush.verticalGradient(listOf(MaterialTheme.colorScheme.tertiaryContainer, MaterialTheme.colorScheme.primaryContainer))
         4 -> Brush.verticalGradient(listOf(MaterialTheme.colorScheme.primaryContainer, MaterialTheme.colorScheme.surfaceVariant))
-        5 -> Brush.verticalGradient(listOf(MaterialTheme.colorScheme.surfaceVariant, MaterialTheme.colorScheme.surface))
+        5 -> Brush.verticalGradient(listOf(MaterialTheme.colorScheme.surfaceVariant, MaterialTheme.colorScheme.secondary))
+        6 -> Brush.verticalGradient(listOf(MaterialTheme.colorScheme.secondary, MaterialTheme.colorScheme.surface))
         else -> Brush.verticalGradient(listOf(MaterialTheme.colorScheme.surface, MaterialTheme.colorScheme.primaryContainer))
     }
 
@@ -143,8 +144,9 @@ fun SetupScreen(
                     2 -> TutorialSearchPage()
                     3 -> TutorialShortcutsPage()
                     4 -> TutorialOrganizePage()
-                    5 -> CustomizationPage(settingsRepository)
-                    6 -> CompletionPage()
+                    5 -> AssistantSetupPage()
+                    6 -> CustomizationPage(settingsRepository)
+                    7 -> CompletionPage()
                 }
             }
         }
@@ -537,5 +539,62 @@ fun CompletionPage() {
             color = MaterialTheme.colorScheme.onSurfaceVariant,
             textAlign = TextAlign.Center
         )
+    }
+}
+
+@Composable
+fun AssistantSetupPage() {
+    val context = LocalContext.current
+
+    // Minimal check: In reality, checking if we are the default assistant programmatically 
+    // is tricky without specific APIs or checking RoleManager on newer Android.
+    // For now, we just provide the button.
+    
+    Column(
+        modifier = Modifier
+            .fillMaxSize()
+            .padding(32.dp),
+        horizontalAlignment = Alignment.Start,
+        verticalArrangement = Arrangement.Center
+    ) {
+         // Icon?
+         Icon(
+             imageVector = Icons.Default.Search, // Using Search icon as proxy for Assistant
+             contentDescription = null,
+             modifier = Modifier.size(64.dp),
+             tint = MaterialTheme.colorScheme.primary
+         )
+         Spacer(modifier = Modifier.height(24.dp))
+        
+        Text(
+            text = stringResource(R.string.setup_assistant_title),
+            style = MaterialTheme.typography.displaySmall,
+            fontWeight = FontWeight.Bold,
+            color = MaterialTheme.colorScheme.onSurface
+        )
+        Spacer(modifier = Modifier.height(16.dp))
+        Text(
+            text = stringResource(R.string.setup_assistant_desc),
+            style = MaterialTheme.typography.bodyLarge,
+            color = MaterialTheme.colorScheme.onSurfaceVariant
+        )
+        Spacer(modifier = Modifier.height(48.dp))
+        
+        Button(
+            onClick = {
+                try {
+                    val intent = android.content.Intent(android.provider.Settings.ACTION_VOICE_INPUT_SETTINGS)
+                    context.startActivity(intent)
+                } catch (e: Exception) {
+                    // Fallback to general settings if voice input settings not found
+                    try {
+                        val intent = android.content.Intent(android.provider.Settings.ACTION_SETTINGS)
+                        context.startActivity(intent)
+                    } catch (e: Exception) {}
+                }
+            }
+        ) {
+            Text(stringResource(R.string.setup_assistant_button))
+        }
     }
 }
